@@ -4,4 +4,9 @@ public class Ticket {
     int seatID;
     int eventID;
     int sectionNum;
+    Ticket(int seatID, int sectionID){
+        customerName="";
+        customerEmail="";
+
+    }
 }
