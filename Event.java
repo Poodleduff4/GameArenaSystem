@@ -1,6 +1,7 @@
+import javax.swing.*;
 import java.util.Date;
 
-public class Event {
+public class Event extends JLabel {
     int EventID;
     String eventName;
     String eventDesc;
@@ -18,7 +19,7 @@ public class Event {
     }
 
     public String getEventDetails(){
-        return "";
+        return eventDesc + '\n' + eventDate + '\n' + eventType;
     }
 
     public Section[] getSectionsForEvent(){

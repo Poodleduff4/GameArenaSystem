@@ -71,6 +71,6 @@ public class UI {
     // Display homepage components
     public static void homepage(){
         hideAllComponents();
-
+        
     }
 }
