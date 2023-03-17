@@ -7,10 +7,10 @@ public class UI {
     static boolean sectionSelected = false;
     static Section selectedSection;
     static ArrayList<EventSeat> selectedSeats;
+    static int labelSize = 25;
     int numSections;
     int seatsPerSection;
     int seatsPerRow;
-    int labelSize = 25;
     int gapBetween = (int) (.5 * labelSize);
     JPanel[] sections;
     JButton addToCartButton;
@@ -71,6 +71,6 @@ public class UI {
     // Display homepage components
     public static void homepage(){
         hideAllComponents();
-        
+
     }
 }
