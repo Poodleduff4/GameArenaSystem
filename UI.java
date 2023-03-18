@@ -7,6 +7,7 @@ public class UI {
     static boolean sectionSelected = false;
     static Section selectedSection;
     static ArrayList<EventSeat> selectedSeats;
+    static Event event;
     static int labelSize = 25;
     int numSections;
     int seatsPerSection;
@@ -40,17 +41,17 @@ public class UI {
 
         f = new JFrame("Game Arena System");
 
-        for (int i = 0; i < numSections; i++) {
-            Section section = new Section(seatsPerSection, seatsPerRow, labelSize, gapBetween, i);
-            section.setLayout(null);
-            section.setBackground(Color.white);
-            sections[i] = section;
-            if (i == 0) {
-                sections[i].setBounds(0, 0, seatsPerRow * labelSize + ((seatsPerRow - 1) * gapBetween), ((int) Math.ceil((double)seatsPerSection / seatsPerRow) * (labelSize + gapBetween) - gapBetween));
-            } else
-                sections[i].setBounds(0, sections[i - 1].getY() + sections[i-1].getHeight() + 100, seatsPerRow * labelSize + ((seatsPerRow - 1) * gapBetween), ((int) Math.ceil((double)seatsPerSection / seatsPerRow) * (labelSize + gapBetween) - gapBetween));
-            f.add(section);
-        }
+//        for (int i = 0; i < numSections; i++) {
+//            Section section = new Section(seatsPerSection, seatsPerRow, labelSize, gapBetween, i);
+//            section.setLayout(null);
+//            section.setBackground(Color.white);
+//            sections[i] = section;
+//            if (i == 0) {
+//                sections[i].setBounds(0, 0, seatsPerRow * labelSize + ((seatsPerRow - 1) * gapBetween), ((int) Math.ceil((double)seatsPerSection / seatsPerRow) * (labelSize + gapBetween) - gapBetween));
+//            } else
+//                sections[i].setBounds(0, sections[i - 1].getY() + sections[i-1].getHeight() + 100, seatsPerRow * labelSize + ((seatsPerRow - 1) * gapBetween), ((int) Math.ceil((double)seatsPerSection / seatsPerRow) * (labelSize + gapBetween) - gapBetween));
+//            f.add(section);
+//        }
         f.add(addToCartButton);
 
         f.setSize((int) size.getWidth(), (int) size.getHeight());
@@ -62,15 +63,34 @@ public class UI {
     }
 
     public static void hideAllComponents(){
-        for (Component component:
-        f.getComponents()){
-            component.setVisible(false);
+        Component[] comps = f.getContentPane().getComponents();
+        for(int i = 0;i < comps.length;i++)
+        {
+            comps[i].setVisible(false);
+            System.out.println(comps[i]);
         }
+        f.revalidate();
     }
 
     // Display homepage components
     public static void homepage(){
         hideAllComponents();
+        f.add(GameArenaSystem.eventList);
+        f.revalidate();
+    }
 
+    public static void eventPage(Event event){
+        UI.event = event;
+        System.out.println("Event Page");
+        f.remove(GameArenaSystem.eventList);
+//        hideAllComponents();
+        UI.event.initiateSeats(event.numSections);
+        for (Section section: event.getSectionsForEvent()) {
+            System.out.println(section.sectionID);
+            section.setSeatsVisible(true);
+            f.add(section);
+        }
+        f.revalidate();
+        f.repaint();
     }
 }

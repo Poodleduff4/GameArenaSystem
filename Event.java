@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Date;
 
 public class Event extends JLabel {
@@ -21,6 +23,37 @@ public class Event extends JLabel {
         this.numSections = numSections;
         this.numSeats = numSeats;
         this.seatsPerRow = seatsPerRow;
+        this.setPreferredSize(new Dimension(500, 200));
+        this.setBackground(Color.green);
+        this.setOpaque(true);
+        this.setText(eventName + '\n' + eventDate + '\n' + eventDesc);
+        this.setVisible(true);
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                UI.eventPage(Event.this);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
     public void initiateSeats(int numSections){
