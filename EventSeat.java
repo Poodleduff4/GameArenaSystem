@@ -8,10 +8,15 @@ public class EventSeat extends Seat {
     int seatID;
     int rowNum;
     int sectionID;
-    int price;
+    double price;
     boolean selected = false;
 
-    EventSeat() {
+    EventSeat(int seatID, int rowNum, int sectionID, double price) {
+        this.seatID = seatID;
+        this.rowNum = rowNum;
+        this.sectionID = sectionID;
+        this.price = price;
+
         this.available = true;
 
         this.addMouseListener(new MouseListener() {
@@ -36,6 +41,8 @@ public class EventSeat extends Seat {
                 if (!selected)
                     setBackground(Color.red);
                 getParent().setBackground(Color.gray);
+
+                UI.updateSeatInformationPanel(EventSeat.this);
 
             }
 
@@ -63,6 +70,10 @@ public class EventSeat extends Seat {
 
     public int getSectionID() {
         return this.sectionID;
+    }
+
+    public double getPrice(){
+        return this.price;
     }
 
 

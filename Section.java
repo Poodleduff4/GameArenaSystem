@@ -10,9 +10,12 @@ public class Section extends JPanel {
     Section(int numSeats, int seatsPerRow, int labelSize, int gapBetween, int sectionID) {
         seats = new EventSeat[numSeats];
         this.sectionID = sectionID;
+        int width = (seatsPerRow*labelSize) + (gapBetween * (seatsPerRow-1));
+        int height = ((int) Math.ceil((double)numSeats / seatsPerRow) * (labelSize + gapBetween) - gapBetween);
+        this.setBounds(0, sectionID* (height + labelSize), width, height);
 
         for (int j = 0; j < numSeats; j++) {
-            EventSeat seat = new EventSeat();
+            EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, Math.random() * 100 + 20);
             seat.setBackground(Color.black);
             seat.setBounds((j % seatsPerRow) * labelSize + (j % seatsPerRow) * gapBetween, (labelSize + gapBetween) * ((int) (j / seatsPerRow)), labelSize, labelSize);
             seat.setOpaque(true);

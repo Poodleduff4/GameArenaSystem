@@ -57,7 +57,7 @@ public class Event extends JLabel {
     }
 
     public void initiateSeats(int numSections){
-        sections = new Section[numSections];
+        this.sections = new Section[numSections];
         for (int i = 0; i < numSections; i++) {
             Section section = new Section(numSeats, seatsPerRow, UI.labelSize, (int)(.5*UI.labelSize), i);
             section.setLayout(null);
