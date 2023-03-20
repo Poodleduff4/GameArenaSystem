@@ -3,10 +3,11 @@ public class Ticket {
     String customerEmail;
     int seatID;
     int eventID;
-    int sectionNum;
+    int sectionID;
     Ticket(int seatID, int sectionID){
         customerName="";
         customerEmail="";
-
+        this.seatID = seatID;
+        this.sectionID = sectionID;
     }
 }

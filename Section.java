@@ -57,15 +57,17 @@ public class Section extends JPanel {
         });
     }
 
-    public void hide(boolean hidden) {
-        setVisible(hidden);
-        setSeatsVisible(false);
-    }
-
     public void setSeatsVisible(boolean visible) {
         for (EventSeat seat : seats) {
-            if (seat.checkAvailability())
-                seat.setVisible(visible);
+            if(visible && seat.checkAvailability()){
+                seat.setVisible(true);
+            }
+            else{
+                seat.setVisible(false);
+            }
+            if(seat.checkAvailability() == false){
+                System.out.println("Not Available");
+            }
         }
     }
 }

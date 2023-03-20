@@ -17,6 +17,7 @@ public class UI {
     static JButton addToCartButton;
     static JFrame f;
     static SeatInformationPanel seatInformationPanel;
+    static JButton homepageButton;
     static Dimension size;
 
 
@@ -30,6 +31,16 @@ public class UI {
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
         seatInformationPanel = new SeatInformationPanel();
+        homepageButton = new JButton("Homepage");
+        homepageButton.setBounds((int)(size.getWidth()-100), (int)(size.getHeight()-200), 100, 100);
+        homepageButton.setBackground(Color.pink);
+//        homepageButton.setVisible(false);
+        homepageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                homepage();
+            }
+        });
 
         addToCartButton = new JButton("Add To Cart");
         addToCartButton.setBounds(700, 700, 100, 100);
@@ -37,7 +48,6 @@ public class UI {
         addToCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(selectedSeats);
                 Cart.setCartItems(selectedSeats);
                 selectedSeats.clear();
                 System.out.println(Cart.getCartItems());
@@ -48,6 +58,7 @@ public class UI {
         f = new JFrame("Game Arena System");
 
         f.add(addToCartButton);
+
 
         f.setSize((int) size.getWidth(), (int) size.getHeight());
         f.setLayout(null);
@@ -62,16 +73,17 @@ public class UI {
         for(int i = 0;i < comps.length;i++)
         {
             f.remove(comps[i]);
-//            comps[i].setVisible(false);
-            System.out.println(comps[i]);
         }
         f.revalidate();
+        f.repaint();
     }
 
     // Display homepage components
     public static void homepage(){
+        System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
+        Component[] comps = f.getContentPane().getComponents();
         f.revalidate();
     }
 
@@ -82,11 +94,12 @@ public class UI {
 //        f.remove(GameArenaSystem.eventList);
         f.add(seatInformationPanel);
         f.add(addToCartButton);
+        f.add(homepageButton);
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
+        homepageButton.setVisible(true);
         UI.event.initiateSeats(event.numSections);
         for (Section section: event.getSectionsForEvent()) {
-            System.out.println(section.sectionID);
             section.setSeatsVisible(true);
             section.revalidate();
             section.repaint();

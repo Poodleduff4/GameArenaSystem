@@ -23,6 +23,7 @@ public class Event extends JLabel {
         this.numSections = numSections;
         this.numSeats = numSeats;
         this.seatsPerRow = seatsPerRow;
+        this.sections = new Section[numSections];
         this.setPreferredSize(new Dimension(500, 200));
         this.setBackground(Color.green);
         this.setOpaque(true);
@@ -57,12 +58,13 @@ public class Event extends JLabel {
     }
 
     public void initiateSeats(int numSections){
-        this.sections = new Section[numSections];
-        for (int i = 0; i < numSections; i++) {
-            Section section = new Section(numSeats, seatsPerRow, UI.labelSize, (int)(.5*UI.labelSize), i);
-            section.setLayout(null);
-            section.setBackground(Color.white);
-            sections[i] = section;
+        if (this.sections[0] == null){
+            for (int i = 0; i < numSections; i++) {
+                Section section = new Section(numSeats, seatsPerRow, UI.labelSize, (int)(.5*UI.labelSize), i);
+                section.setLayout(null);
+                section.setBackground(Color.white);
+                sections[i] = section;
+            }
         }
     }
     public String getEventByType(){
