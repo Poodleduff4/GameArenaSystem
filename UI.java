@@ -40,6 +40,29 @@ public class UI {
 
         f = new JFrame("Game Arena System");
 
+        JMenuBar menuBar = new JMenuBar();
+        f.setJMenuBar(menuBar);
+
+        JMenu homeMenu = new JMenu("Home");
+        menuBar.add(homeMenu);
+        JMenuItem homeItem = new JMenuItem("Homepage");
+        homeMenu.add(homeItem);
+        homeItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                homepage();
+            }
+        });
+
+        JMenu cartMenu = new JMenu("Cart");
+        JMenuItem viewCartMenuItem = new JMenuItem("View Cart");
+        JMenuItem checkoutMenuItem = new JMenuItem("Checkout");
+        cartMenu.add(viewCartMenuItem);
+        cartMenu.add(checkoutMenuItem);
+        menuBar.add(Box.createHorizontalGlue());
+        menuBar.add(cartMenu);
+
+        f.setJMenuBar(menuBar);
+
         for (int i = 0; i < numSections; i++) {
             Section section = new Section(seatsPerSection, seatsPerRow, labelSize, gapBetween, i);
             section.setLayout(null);
@@ -56,6 +79,8 @@ public class UI {
         f.setSize((int) size.getWidth(), (int) size.getHeight());
         f.setLayout(null);
         f.setVisible(true);
+
+
 
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
