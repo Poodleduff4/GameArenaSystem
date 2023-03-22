@@ -41,6 +41,7 @@ public class UI {
         f = new JFrame("Game Arena System");
 
         JMenuBar menuBar = new JMenuBar();
+
         f.setJMenuBar(menuBar);
 
         JMenu homeMenu = new JMenu("Home");
@@ -60,8 +61,6 @@ public class UI {
         cartMenu.add(checkoutMenuItem);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(cartMenu);
-
-        f.setJMenuBar(menuBar);
 
         for (int i = 0; i < numSections; i++) {
             Section section = new Section(seatsPerSection, seatsPerRow, labelSize, gapBetween, i);
