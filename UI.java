@@ -88,14 +88,12 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 JFrame cartFrame = new JFrame("Cart");
 
-                JPanel cartPanel = new JPanel(new GridLayout(selectedSeats.size() + 1, 2));
+                JPanel cartPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 2));
 
                 JLabel cartHeader = new JLabel("Cart Contents:");
 
-                cartPanel.add(cartHeader);
-
                 for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    JLabel seatLabel = new JLabel("" + seat.seatID);
+                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + "Row Number: " + seat.rowNum);
                     cartPanel.add(seatLabel);
                 }
 
@@ -179,6 +177,20 @@ public class UI {
         f.revalidate();
         f.repaint();
         Component[] comps = f.getContentPane().getComponents();
+<<<<<<< HEAD
+=======
+        for(int i = 0;i < comps.length;i++)
+        {
+            System.out.println(comps[i]);
+            Component[] childs = ((Cart)comps[i]).getComponents();
+            for (int j = 0; j < childs.length; j++) {
+                System.out.println(childs[j]);
+            }
+        }
+
+        //Add button here
+
+>>>>>>> origin/Event-Selection
     }
 
     public static void updateSeatInformationPanel(EventSeat seat){
