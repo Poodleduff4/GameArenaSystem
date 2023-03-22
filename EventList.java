@@ -39,6 +39,6 @@ public class EventList extends JPanel {
                 return event;
             }
         }
-        r
+        return null;
     }
 }

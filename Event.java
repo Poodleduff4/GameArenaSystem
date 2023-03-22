@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.Date;
 
 public class Event extends JLabel {
-    int EventID;
+    int eventID;
     String eventName;
     String eventDesc;
     Date eventDate;
@@ -24,7 +24,7 @@ public class Event extends JLabel {
         this.numSeats = numSeats;
         this.seatsPerRow = seatsPerRow;
         this.sections = new Section[numSections];
-        this.EventID = eventID;
+        this.eventID = eventID;
         this.setPreferredSize(new Dimension(500, 200));
         this.setBackground(Color.green);
         this.setOpaque(true);
