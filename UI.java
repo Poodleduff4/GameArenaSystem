@@ -176,7 +176,6 @@ public class UI {
 
         f.revalidate();
         f.repaint();
-        Component[] comps = f.getContentPane().getComponents();
     }
 
     public static void updateSeatInformationPanel(EventSeat seat){

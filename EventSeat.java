@@ -10,19 +10,29 @@ public class EventSeat extends Seat {
     int sectionID;
     double price;
     boolean selected = false;
+    boolean added = false;
 
-    EventSeat(int seatID, int rowNum, int sectionID, double price) {
+    EventSeat(int seatID, int rowNum, int sectionID, double price, int eventID) {
         this.seatID = seatID;
         this.rowNum = rowNum;
         this.sectionID = sectionID;
         this.price = price;
+        this.eventID = eventID;
 
         this.available = true;
 
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                UI.selectedSeats.add(EventSeat.this);
+                if (!added) {
+                    UI.selectedSeats.add(EventSeat.this);
+                    added = true;
+                }
+                if(selected)
+                {
+                    UI.selectedSeats.remove(EventSeat.this);
+                    added = false;
+                }
                 selected = !selected;
             }
 
@@ -72,7 +82,7 @@ public class EventSeat extends Seat {
         return this.sectionID;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
 

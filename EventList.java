@@ -40,7 +40,6 @@ public class EventList extends JPanel {
         for (Event event :
                 eventList) {
             if(event.eventID == id){
-                System.out.println(event);
                 return event;
             }
         }
