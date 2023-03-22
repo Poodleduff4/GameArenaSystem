@@ -19,7 +19,6 @@ public class UI {
     static SeatInformationPanel seatInformationPanel;
     static JButton homepageButton;
     static Dimension size;
-    static JButton viewCartButton;
     static JMenuBar menuBar;
 
 
@@ -55,15 +54,6 @@ public class UI {
             }
         });
 
-        viewCartButton = new JButton("View Cart");
-        viewCartButton.setBounds((int)(size.getWidth()-100), 0, 100, 100);
-        viewCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewCart();
-            }
-        });
-
         f = new JFrame("Game Arena System");
 
         f.setJMenuBar(menuBar);
@@ -86,6 +76,13 @@ public class UI {
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(cartMenu);
 
+        viewCartMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewCart();
+            }
+        });
+
         checkoutMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +94,8 @@ public class UI {
 
                 cartPanel.add(cartHeader);
 
-                for (EventSeat seat : selectedSeats) {
-                    JLabel seatLabel = new JLabel("Add stuff");
+                for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
+                    JLabel seatLabel = new JLabel("" + seat.seatID);
                     cartPanel.add(seatLabel);
                 }
 
@@ -148,7 +145,6 @@ public class UI {
         System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
-        f.add(viewCartButton);
         Component[] comps = f.getContentPane().getComponents();
         f.revalidate();
         f.repaint();
