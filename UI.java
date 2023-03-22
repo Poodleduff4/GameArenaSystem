@@ -20,6 +20,7 @@ public class UI {
     static JButton homepageButton;
     static Dimension size;
     static JButton viewCartButton;
+    static JMenuBar menuBar;
 
 
     UI(int numSections, int seatsPerSection, int seatsPerRow) {
@@ -28,6 +29,7 @@ public class UI {
         this.seatsPerRow = seatsPerRow;
         sections = new JPanel[4];
         selectedSeats = new ArrayList<>();
+        menuBar  = new JMenuBar();
 
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -63,6 +65,62 @@ public class UI {
         });
 
         f = new JFrame("Game Arena System");
+
+        f.setJMenuBar(menuBar);
+
+        JMenu homeMenu = new JMenu("Home");
+        menuBar.add(homeMenu);
+        JMenuItem homeItem = new JMenuItem("Homepage");
+        homeMenu.add(homeItem);
+        homeItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                homepage();
+            }
+        });
+
+        JMenu cartMenu = new JMenu("Cart");
+        JMenuItem viewCartMenuItem = new JMenuItem("View Cart");
+        JMenuItem checkoutMenuItem = new JMenuItem("Checkout");
+        cartMenu.add(viewCartMenuItem);
+        cartMenu.add(checkoutMenuItem);
+        menuBar.add(Box.createHorizontalGlue());
+        menuBar.add(cartMenu);
+
+        checkoutMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame cartFrame = new JFrame("Cart");
+
+                JPanel cartPanel = new JPanel(new GridLayout(selectedSeats.size() + 1, 2));
+
+                JLabel cartHeader = new JLabel("Cart Contents:");
+
+                cartPanel.add(cartHeader);
+
+                for (EventSeat seat : selectedSeats) {
+                    JLabel seatLabel = new JLabel("Add stuff");
+                    cartPanel.add(seatLabel);
+                }
+
+                JButton finishPurchaseButton = new JButton("Finish Purchase");
+
+                finishPurchaseButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //This doesn't lead anywhere just finishes
+                        JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
+                        cartFrame.dispose();
+                    }
+                });
+
+                cartPanel.add(finishPurchaseButton);
+
+                cartFrame.add(cartPanel);
+
+                cartFrame.setSize(400, 400);
+                cartFrame.setVisible(true);
+            }
+        });
 
         f.add(addToCartButton);
 
