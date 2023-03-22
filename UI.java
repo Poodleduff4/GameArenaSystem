@@ -55,9 +55,7 @@ public class UI {
         });
 
         JMenu cartMenu = new JMenu("Cart");
-        JMenuItem viewCartMenuItem = new JMenuItem("View Cart");
         JMenuItem checkoutMenuItem = new JMenuItem("Checkout");
-        cartMenu.add(viewCartMenuItem);
         cartMenu.add(checkoutMenuItem);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(cartMenu);
@@ -74,6 +72,46 @@ public class UI {
             f.add(section);
         }
         f.add(addToCartButton);
+
+
+        //All of this is for the checkout Menu
+        checkoutMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame cartFrame = new JFrame("Cart");
+
+                JPanel cartPanel = new JPanel(new GridLayout(selectedSeats.size() + 1, 2));
+
+                JLabel cartHeader = new JLabel("Cart Contents:");
+
+                cartPanel.add(cartHeader);
+
+                for (EventSeat seat : selectedSeats) {
+                    JLabel seatLabel = new JLabel("Add stuff");
+                    cartPanel.add(seatLabel);
+                }
+
+                JButton finishPurchaseButton = new JButton("Finish Purchase");
+
+                finishPurchaseButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //This doesn't lead anywhere just finishes
+                        JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
+                        cartFrame.dispose();
+                    }
+                });
+
+                cartPanel.add(finishPurchaseButton);
+
+                cartFrame.add(cartPanel);
+
+                cartFrame.setSize(400, 400);
+                cartFrame.setVisible(true);
+            }
+        });
+
+
 
         f.setSize((int) size.getWidth(), (int) size.getHeight());
         f.setLayout(null);
