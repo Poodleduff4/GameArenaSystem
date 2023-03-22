@@ -73,6 +73,14 @@ public class UI {
         }
         f.add(addToCartButton);
 
+        //Test this and add the ticket to the selectedSeats. ***Potentional add***
+//        addToCartButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//            }
+//        });
+
 
         //All of this is for the checkout Menu
         checkoutMenuItem.addActionListener(new ActionListener() {
@@ -87,7 +95,8 @@ public class UI {
                 cartPanel.add(cartHeader);
 
                 for (EventSeat seat : selectedSeats) {
-                    JLabel seatLabel = new JLabel("Add stuff");
+                    //Add proper ticket and make it show
+                    JLabel seatLabel = new JLabel(seat.seatID + " - " + seat.price);
                     cartPanel.add(seatLabel);
                 }
 
@@ -112,12 +121,9 @@ public class UI {
         });
 
 
-
         f.setSize((int) size.getWidth(), (int) size.getHeight());
         f.setLayout(null);
         f.setVisible(true);
-
-
 
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
