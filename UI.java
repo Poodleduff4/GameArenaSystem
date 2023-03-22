@@ -177,20 +177,6 @@ public class UI {
         f.revalidate();
         f.repaint();
         Component[] comps = f.getContentPane().getComponents();
-<<<<<<< HEAD
-=======
-        for(int i = 0;i < comps.length;i++)
-        {
-            System.out.println(comps[i]);
-            Component[] childs = ((Cart)comps[i]).getComponents();
-            for (int j = 0; j < childs.length; j++) {
-                System.out.println(childs[j]);
-            }
-        }
-
-        //Add button here
-
->>>>>>> origin/Event-Selection
     }
 
     public static void updateSeatInformationPanel(EventSeat seat){
