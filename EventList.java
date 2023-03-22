@@ -31,4 +31,14 @@ public class EventList extends JPanel {
     public Event[] getEventList() {
         return eventList;
     }
+    
+    public Event getEventByID(int id){
+        for (Event event :
+                eventList) {
+            if(event.eventID == id){
+                return event;
+            }
+        }
+        r
+    }
 }

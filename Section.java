@@ -65,9 +65,6 @@ public class Section extends JPanel {
             else{
                 seat.setVisible(false);
             }
-            if(seat.checkAvailability() == false){
-                System.out.println("Not Available");
-            }
         }
     }
 }

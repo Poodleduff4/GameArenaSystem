@@ -19,6 +19,7 @@ public class UI {
     static SeatInformationPanel seatInformationPanel;
     static JButton homepageButton;
     static Dimension size;
+    static JButton viewCartButton;
 
 
     UI(int numSections, int seatsPerSection, int seatsPerRow) {
@@ -44,16 +45,22 @@ public class UI {
 
         addToCartButton = new JButton("Add To Cart");
         addToCartButton.setBounds(700, 700, 100, 100);
-        addToCartButton.setBackground(Color.orange);
         addToCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cart.setCartItems(selectedSeats);
+                GameArenaSystem.cart.addItemsToCart(selectedSeats);
                 selectedSeats.clear();
-                System.out.println(Cart.getCartItems());
             }
         });
 
+        viewCartButton = new JButton("View Cart");
+        viewCartButton.setBounds((int)(size.getWidth()-100), 0, 100, 100);
+        viewCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewCart();
+            }
+        });
 
         f = new JFrame("Game Arena System");
 
@@ -83,15 +90,16 @@ public class UI {
         System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
+        f.add(viewCartButton);
         Component[] comps = f.getContentPane().getComponents();
         f.revalidate();
+        f.repaint();
     }
 
     public static void eventPage(Event event){
         UI.event = event;
         System.out.println("Event Page");
         hideAllComponents();
-//        f.remove(GameArenaSystem.eventList);
         f.add(seatInformationPanel);
         f.add(addToCartButton);
         f.add(homepageButton);
@@ -104,8 +112,26 @@ public class UI {
             section.revalidate();
             section.repaint();
             f.add(section);
-            f.revalidate();
-            f.repaint();
+        }
+        f.revalidate();
+        f.repaint();
+    }
+
+    public void viewCart(){
+        hideAllComponents();
+        f.add(GameArenaSystem.cart);
+
+
+        f.revalidate();
+        f.repaint();
+        Component[] comps = f.getContentPane().getComponents();
+        for(int i = 0;i < comps.length;i++)
+        {
+            System.out.println(comps[i]);
+            Component[] childs = ((Cart)comps[i]).getComponents();
+            for (int j = 0; j < childs.length; j++) {
+                System.out.println(childs[j]);
+            }
         }
     }
 
