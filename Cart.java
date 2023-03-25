@@ -42,15 +42,25 @@ public class Cart extends JPanel {
         }
     }
     public void removeTicket(Ticket ticket) {
-
-        this.remove(ticket);
-        for (EventSeat seat : selectedSeats) {
-            if (seat.eventID == ticket.eventID) {
-                seat.setVisible(true);
-                break;
+        // loops thru all the seats in all events to make the seat visible again on the event pages, checks for matching seatID, sectionID, eventID to get the right seat
+        for (Event event : GameArenaSystem.eventList.eventList) {
+            for (Section section : event.sections) {
+                for (EventSeat seat : section.seats) {
+                    if (seat.seatID == ticket.seatID && seat.sectionID == ticket.sectionID && seat.eventID == ticket.eventID) {
+                        seat.available = true;
+                    }
+                }
             }
         }
+        // starting at the ticket that is being removed
+        int index = tickets.indexOf(ticket);
+        // remove the ticket from the list
         tickets.remove(ticket);
+        this.remove(ticket);
+        // moves all the tickets below the removed one up in the panel
+        for(int i = index;i < tickets.size();i++) {
+            tickets.get(i).setBounds(0, tickets.get(i).getBounds().y-label_height-padding, label_width, label_height);
+        }
         this.revalidate();
         this.repaint();
     }
