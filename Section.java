@@ -30,10 +30,10 @@ public class Section extends JPanel {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (UI.sectionSelected)
-                    UI.selectedSection.setSeatsVisible(false);
-                setSeatsVisible(true);
-                UI.sectionSelected = true;
+//                if (UI.sectionSelected)
+//                    UI.selectedSection.setSeatsVisible(false);
+//                setSeatsVisible(true);
+//                UI.sectionSelected = true;
                 UI.selectedSection = Section.this;
             }
 
