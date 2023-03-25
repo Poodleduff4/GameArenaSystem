@@ -7,6 +7,8 @@ public class Section extends JPanel {
     EventSeat[] seats;
     int sectionID;
     int eventId;
+    int price;
+    int rowNum;
 
     Section(int numSeats, int seatsPerRow, int labelSize, int gapBetween, int sectionID, int eventID) {
         seats = new EventSeat[numSeats];
@@ -16,8 +18,38 @@ public class Section extends JPanel {
         int height = ((int) Math.ceil((double)numSeats / seatsPerRow) * (labelSize + gapBetween) - gapBetween);
         this.setBounds(0, sectionID* (height + labelSize), width, height);
 
+        if (eventID == 1) {
+            if (sectionID == 4) {
+                price = 200;
+            }
+            if (sectionID == 3) {
+                price = 180;
+            }
+            if (sectionID == 2) {
+                price = 150;
+            }
+            if (sectionID == 1) {
+                price = 100;
+            }
+            if (sectionID == 0) {
+                price = 70;
+            }
+        }
+        if (eventID == 0){
+            if (sectionID == 0) {
+                price = 50;
+            }
+            if (sectionID == 1) {
+                price = 75;
+            }
+            if (sectionID == 2) {
+                price = 50;
+            }
+        }
+
+
         for (int j = 0; j < numSeats; j++) {
-            EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, Math.random() * 100 + 20, this.eventId);
+            EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, price, this.eventId);
             seat.setBackground(Color.black);
             seat.setBounds((j % seatsPerRow) * labelSize + (j % seatsPerRow) * gapBetween, (labelSize + gapBetween) * ((int) (j / seatsPerRow)), labelSize, labelSize);
             seat.setOpaque(true);
