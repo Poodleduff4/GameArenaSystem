@@ -51,8 +51,10 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 GameArenaSystem.cart.addItemsToCart(selectedSeats);
                 selectedSeats.clear();
+
             }
         });
+
 
         f = new JFrame("Game Arena System");
 
@@ -81,6 +83,7 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 viewCart();
             }
+
         });
 
         checkoutMenuItem.addActionListener(new ActionListener() {
@@ -93,7 +96,7 @@ public class UI {
                 JLabel cartHeader = new JLabel("Cart Contents:");
 
                 for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + "Row Number: " + seat.rowNum);
+                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
                     cartPanel.add(seatLabel);
                 }
 
@@ -171,6 +174,7 @@ public class UI {
 
     public void viewCart(){
         hideAllComponents();
+
         f.add(GameArenaSystem.cart);
 
 
