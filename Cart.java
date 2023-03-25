@@ -42,12 +42,28 @@ public class Cart extends JPanel {
         }
     }
     public void removeTicket(Ticket ticket) {
-        // loops thru all the seats in all events to make the seat visible again on the event pages, checks for matching seatID, sectionID, eventID to get the right seat
+        int index = tickets.indexOf(ticket);
         this.remove(ticket);
         tickets.remove(ticket);
-
         this.revalidate();
         this.repaint();
+
+        int y = index * (label_height + padding);
+        for (int i = 0; i < index; i++) {
+            tickets.get(i).setBounds(0, i * (label_height + padding), label_width, label_height);
+        }
+
+        for (int i = index; i < tickets.size(); i++) {
+            tickets.get(i).setBounds(0, y, label_width, label_height);
+            y += (label_height + padding);
+        }
+
+        for (EventSeat seat : selectedSeats) {
+            if (!tickets.stream().anyMatch(t -> t.eventID == seat.eventID && t.sectionID == seat.sectionID && t.seatID == seat.getSeatID())) {
+                seat.setVisible(true);
+                seat.updateAvailability();
+            }
+        }
 
         for (Event event : GameArenaSystem.eventList.eventList) {
             for (Section section : event.sections) {
@@ -58,18 +74,5 @@ public class Cart extends JPanel {
                 }
             }
         }
-        // starting at the ticket that is being removed
-        int index = tickets.indexOf(ticket);
-        // remove the ticket from the list
-
-
-        // moves all the tickets below the removed one up in the panel
-
-
-        for(int i = index;i < tickets.size();i++) {
-            tickets.get(i).setBounds(0, tickets.get(i).getBounds().y-label_height-padding, label_width, label_height);
-        }
-        this.revalidate();
-        this.repaint();
     }
 }
