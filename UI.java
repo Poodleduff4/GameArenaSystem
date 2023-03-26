@@ -100,7 +100,7 @@ public class UI {
                 ticketPanel.add(cartHeader);
 
                 for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
+                    JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
                     ticketPanel.add(seatLabel);
                 }
 
