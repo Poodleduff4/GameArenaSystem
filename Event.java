@@ -2,20 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Event extends JLabel {
     int eventID;
     String eventName;
     String eventDesc;
-    Date eventDate;
+    String eventDate;
     String eventType;
     Section[] sections;
     int numSeats;
     int numSections;
     int seatsPerRow;
+//    DateTimeFormatter dateTimeFormatter; = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-    Event(String eventName, String eventDesc, Date eventDate, String eventType, int numSections, int numSeats, int seatsPerRow, int eventID){
+    Event(String eventName, String eventDesc, String eventDate, String eventType, int numSections, int numSeats, int seatsPerRow, int eventID){
+//        dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         this.eventName = eventName;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;
