@@ -1,10 +1,6 @@
 import java.util.regex.Pattern;
 
 public class Checkout {
-    public boolean printTicket(){
-        // Function to generate and print ticket, might need another class later
-        return false;
-    }
 
     public boolean emailTicket(){
         return false;

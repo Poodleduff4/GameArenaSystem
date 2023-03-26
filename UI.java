@@ -22,6 +22,7 @@ public class UI {
     static JButton homepageButton;
     static Dimension size;
     static JMenuBar menuBar;
+    static CheckoutWindow checkoutWindow;
 
 
     UI(int numSections, int seatsPerSection, int seatsPerRow) {
@@ -59,7 +60,6 @@ public class UI {
             }
         });
 
-
         f = new JFrame("Game Arena System");
 
         f.setJMenuBar(menuBar);
@@ -93,136 +93,7 @@ public class UI {
         checkoutMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame cartFrame = new JFrame("Cart");
-
-                JPanel cartPanel = new JPanel();
-                cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
-
-                JPanel ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));
-
-                JLabel cartHeader = new JLabel("Cart Contents:");
-                ticketPanel.add(cartHeader);
-
-                for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
-                    ticketPanel.add(seatLabel);
-                }
-
-                cartPanel.add(ticketPanel);
-
-                JPanel paymentPanel = new JPanel();
-                paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
-
-                JLabel nameLabel = new JLabel("Full Name:");
-                JTextField nameTextField = new JTextField();
-                nameTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel namePanel = new JPanel();
-                namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
-                namePanel.add(nameLabel);
-                namePanel.add(Box.createRigidArea(new Dimension(10, 0)));
-                namePanel.add(nameTextField);
-                paymentPanel.add(namePanel);
-
-                paymentPanel.add(Box.createVerticalStrut(10));
-
-                JLabel emailLabel = new JLabel("Email:");
-                JTextField emailTextField = new JTextField();
-                emailTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel emailPanel = new JPanel();
-                emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.X_AXIS));
-                emailPanel.add(emailLabel);
-                emailPanel.add(Box.createRigidArea(new Dimension(10,0)));
-                emailPanel.add(emailTextField);
-                paymentPanel.add(emailPanel);
-
-                paymentPanel.add(Box.createVerticalStrut(10));
-
-                JLabel paymentLabel = new JLabel("Credit Card Number:");
-                JTextField paymentTextField = new JTextField();
-                paymentTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel payPanel = new JPanel();
-                payPanel.setLayout(new BoxLayout(payPanel, BoxLayout.X_AXIS));
-                payPanel.add(paymentLabel);
-                payPanel.add(Box.createRigidArea(new Dimension(10,0)));
-                payPanel.add(paymentTextField);
-                paymentPanel.add(payPanel);
-
-                paymentPanel.add(Box.createVerticalStrut(10));
-
-                JLabel securityLabel = new JLabel("CVV:");
-                JTextField securityTextField = new JTextField();
-                securityTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel securityPanel = new JPanel();
-                securityPanel.setLayout(new BoxLayout(securityPanel, BoxLayout.X_AXIS));
-                securityPanel.add(securityLabel);
-                securityPanel.add(Box.createRigidArea(new Dimension(10,0)));
-                securityPanel.add(securityTextField);
-                paymentPanel.add(securityPanel);
-
-                paymentPanel.add(Box.createVerticalStrut(10));
-
-                JLabel monthLabel = new JLabel("Month (MM):");
-                JTextField monthTextField = new JTextField();
-                monthTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel monthPanel = new JPanel();
-                monthPanel.setLayout(new BoxLayout(monthPanel, BoxLayout.X_AXIS));
-                monthPanel.add(monthLabel);
-                monthPanel.add(Box.createRigidArea(new Dimension(10,0)));
-                monthPanel.add(monthTextField);
-                paymentPanel.add(monthPanel);
-
-                paymentPanel.add(Box.createVerticalStrut(10));
-
-                JLabel yearLabel = new JLabel("Year (YYYY):");
-                JTextField yearTextField = new JTextField();
-                yearTextField.setMaximumSize(new Dimension(200, 20));
-                JPanel yearPanel = new JPanel();
-                yearPanel.setLayout(new BoxLayout(yearPanel, BoxLayout.X_AXIS));
-                yearPanel.add(yearLabel);
-                yearPanel.add(Box.createRigidArea(new Dimension(10,0)));
-                yearPanel.add(yearTextField);
-                paymentPanel.add(yearPanel);
-
-                cartPanel.add(paymentPanel);
-
-                JButton finishPurchaseButton = new JButton("Finish Purchase");
-
-                finishPurchaseButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        // check if all text fields are not empty
-                        Checkout checkout = new Checkout();
-                        if (emailTextField.getText().isEmpty() || paymentTextField.getText().isEmpty() ||
-                                securityTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || monthTextField.getText().isEmpty() ||
-                                yearTextField.getText().isEmpty()) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please fill in all the fields.");
-                        } else if (!checkout.verifyEmail(emailTextField.getText())) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid email address.");
-                        } else if (!checkout.verifyPayment((paymentTextField.getText()))) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid 16-digit card number.");
-                        } else if (!checkout.verifyCVV(Integer.parseInt(securityTextField.getText()))) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid 3-digit security code.");
-                        } else if (!checkout.verifyMonth(Integer.parseInt(monthTextField.getText()))) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration month (MM).");
-                        } else if (!checkout.verifyYear(Integer.parseInt(yearTextField.getText()))) {
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration year (YYYY).");
-                        } else if (!checkout.verifyName(nameTextField.getText())){
-                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid name (First Last)");
-                        } else {
-                            // complete the purchase
-                            JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
-                            cartFrame.dispose();
-                            GameArenaSystem.cart.clearCart();
-                        }
-                    }
-                });
-
-
-                cartPanel.add(finishPurchaseButton);
-
-                cartFrame.add(cartPanel);
-                cartFrame.setSize(400, 400);
-                cartFrame.setVisible(true);
+                checkoutWindow = new CheckoutWindow();
             }
         });
 
@@ -298,6 +169,10 @@ public class UI {
 
         f.revalidate();
         f.repaint();
+    }
+
+    public void checkout(){
+
     }
 
     public static void updateSeatInformationPanel(EventSeat seat){

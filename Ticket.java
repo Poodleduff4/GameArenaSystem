@@ -53,4 +53,8 @@ public class Ticket extends JLabel {
 
         this.add(centerPanel, BorderLayout.SOUTH);
     }
+
+    public String generateUniqueIDString(){
+        return eventID + "_" + sectionID + "_" + seatID;
+    }
 }

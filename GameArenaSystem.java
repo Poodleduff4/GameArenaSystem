@@ -7,7 +7,7 @@ public class GameArenaSystem {
     public static void main(String[] args) {
         UI ui = new UI(2, 50, 10);
         cart = new Cart();
-        Event[] events = {new Event("Billy Joel World Tour : ", " : Billy Joel concert ", new Date(), "Concert", 3, 50, 10, 0), new Event("Call Of Duty Major 3 Tournament : ", " : Esports ", new Date(), "Tournament ", 5, 50, 25, 1), new Event("Drake & 21 Savage Reborn Tour : ", " : Hip Hop ", new Date(), "Concert ", 3, 60, 20, 1), new Event("Kendrick Lamar Good Kid M.A.A.D City : ", " : Rap ", new Date(), "Concert ", 8, 20, 20, 1)};
+        Event[] events = {new Event("Billy Joel World Tour : ", " : Billy Joel concert ", new Date(), "Concert", 3, 50, 10, 0), new Event("Call Of Duty Major 3 Tournament : ", " : Esports ", new Date(), "Tournament ", 5, 50, 25, 1)};
         eventList = new EventList();
         eventList.setEventList(events);
         UI.homepage();
