@@ -77,13 +77,6 @@ public class Checkout {
         }
         return bruhskii.matcher(name).matches();
     }
-    
-    public void generateTickets() throws Exception{
-        for (Ticket ticket :
-                GameArenaSystem.cart.getCartItems()) {
-            TicketGenerator.generateTicket(ticket);
-        }
-    }
 
    /*
     old code if needed
