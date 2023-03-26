@@ -1,3 +1,4 @@
+import java.util.regex.Pattern;
 
 public class Checkout {
     public boolean printTicket(){
@@ -10,14 +11,21 @@ public class Checkout {
     }
 
     public boolean verifyEmail(String email){
-        return false;
+        String emailRegex = "[A-Za-z0-9].*@[A-Za-z0-9].*\\.[A-z].*";
+        Pattern bruh = Pattern.compile(emailRegex);
+        if (email == null){
+            return false;
+        }
+        return bruh.matcher(email).matches();
     }
 
-    public boolean verifyPayment(int cardNum){   // Standard 16 digit card number. No spaces in between.
+    public boolean verifyPayment(String cardNum){
+        // Standard 16 digit card number. No spaces in between.
         int trueCard = 0;
-        while (cardNum != 0){
-            cardNum = cardNum / 10;
-            trueCard+=1;
+        for(int i=0; i<cardNum.length(); i++){
+            if(Character.isDigit(cardNum.charAt(i))){
+                trueCard+=1;
+            }
         }
         if (trueCard != 16) {
             return false;
@@ -54,14 +62,10 @@ public class Checkout {
         }
     }
 
-    public boolean verifyYear(int year){  // YYYY
-        int trueYear = 0;
-        while (year != 0){
-            year = year / 10;
-            trueYear+=1;
-        }
-        if (trueYear != 4){
-         return false;
+    public boolean verifyYear(int year) {  // YYYY
+        String yearString = String.valueOf(year);
+        if (yearString.length() != 4) {
+            return false;
         } else if (year <= 2022) {
             return false;
         } else {
@@ -69,6 +73,30 @@ public class Checkout {
         }
     }
 
+    public boolean verifyName(String name){
+        String nameRegex = "[A-Z].*[a-z]\s[A-Z].*[a-z]";
+        Pattern bruhskii = Pattern.compile(nameRegex);
+        if (name == null){
+            return false;
+        }
+        return bruhskii.matcher(name).matches();
+    }
 
+   /*
+    old code if needed
+    public boolean verifyYear(int year){  // YYYY
+        int trueYear = 0;
+        while (year != 0){
+            year = year / 10;
+            trueYear+=1;
+        }
+        if (trueYear != 4){
+            return false;
+        } else if (year <= 2022) {
+            return false;
+        } else {
+            return true;
+        }
+    } */
 
 }

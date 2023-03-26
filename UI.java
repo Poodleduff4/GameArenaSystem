@@ -11,13 +11,14 @@ public class UI {
     static int labelSize = 25;
     int numSections;
     int seatsPerSection;
-    static ArrayList<Double> currentPrice = new ArrayList<Double>();
     int seatsPerRow;
     int gapBetween = (int) (.5 * labelSize);
     JPanel[] sections;
     static JButton addToCartButton;
     static JFrame f;
     static SeatInformationPanel seatInformationPanel;
+    static EsportsStagePanel esportsStagePanel;
+    static ConcertStagePanel concertStagePanel;
     static JButton homepageButton;
     static Dimension size;
     static JMenuBar menuBar;
@@ -33,6 +34,8 @@ public class UI {
 
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
+        esportsStagePanel = new EsportsStagePanel();
+        concertStagePanel = new ConcertStagePanel();
         seatInformationPanel = new SeatInformationPanel();
         homepageButton = new JButton("Homepage");
         homepageButton.setBounds((int)(size.getWidth()-100), (int)(size.getHeight()-200), 100, 100);
@@ -92,44 +95,139 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 JFrame cartFrame = new JFrame("Cart");
 
-                JPanel cartPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 2, 2));
+                JPanel cartPanel = new JPanel();
+                cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
+
+                JPanel ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));
 
                 JLabel cartHeader = new JLabel("Cart Contents:");
-                int counter = 0;
-                JLabel totalLabel = new JLabel();
+                ticketPanel.add(cartHeader);
 
-                double totalAmount = 0;
                 for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    totalAmount += currentPrice.get(counter);
-                    counter += 1;
-                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum + "\n" + " Price: " + currentPrice.get(counter));
-                    cartPanel.add(seatLabel);
+                    JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
+                    ticketPanel.add(seatLabel);
                 }
 
-                totalLabel.setText("Total: $" + totalAmount);
+                cartPanel.add(ticketPanel);
+
+                JPanel paymentPanel = new JPanel();
+                paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
+
+                JLabel nameLabel = new JLabel("Full Name:");
+                JTextField nameTextField = new JTextField();
+                nameTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel namePanel = new JPanel();
+                namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+                namePanel.add(nameLabel);
+                namePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+                namePanel.add(nameTextField);
+                paymentPanel.add(namePanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
+                JLabel emailLabel = new JLabel("Email:");
+                JTextField emailTextField = new JTextField();
+                emailTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel emailPanel = new JPanel();
+                emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.X_AXIS));
+                emailPanel.add(emailLabel);
+                emailPanel.add(Box.createRigidArea(new Dimension(10,0)));
+                emailPanel.add(emailTextField);
+                paymentPanel.add(emailPanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
+                JLabel paymentLabel = new JLabel("Credit Card Number:");
+                JTextField paymentTextField = new JTextField();
+                paymentTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel payPanel = new JPanel();
+                payPanel.setLayout(new BoxLayout(payPanel, BoxLayout.X_AXIS));
+                payPanel.add(paymentLabel);
+                payPanel.add(Box.createRigidArea(new Dimension(10,0)));
+                payPanel.add(paymentTextField);
+                paymentPanel.add(payPanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
+                JLabel securityLabel = new JLabel("CVV:");
+                JTextField securityTextField = new JTextField();
+                securityTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel securityPanel = new JPanel();
+                securityPanel.setLayout(new BoxLayout(securityPanel, BoxLayout.X_AXIS));
+                securityPanel.add(securityLabel);
+                securityPanel.add(Box.createRigidArea(new Dimension(10,0)));
+                securityPanel.add(securityTextField);
+                paymentPanel.add(securityPanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
+                JLabel monthLabel = new JLabel("Month (MM):");
+                JTextField monthTextField = new JTextField();
+                monthTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel monthPanel = new JPanel();
+                monthPanel.setLayout(new BoxLayout(monthPanel, BoxLayout.X_AXIS));
+                monthPanel.add(monthLabel);
+                monthPanel.add(Box.createRigidArea(new Dimension(10,0)));
+                monthPanel.add(monthTextField);
+                paymentPanel.add(monthPanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
+                JLabel yearLabel = new JLabel("Year (YYYY):");
+                JTextField yearTextField = new JTextField();
+                yearTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel yearPanel = new JPanel();
+                yearPanel.setLayout(new BoxLayout(yearPanel, BoxLayout.X_AXIS));
+                yearPanel.add(yearLabel);
+                yearPanel.add(Box.createRigidArea(new Dimension(10,0)));
+                yearPanel.add(yearTextField);
+                paymentPanel.add(yearPanel);
+
+                cartPanel.add(paymentPanel);
 
                 JButton finishPurchaseButton = new JButton("Finish Purchase");
 
                 finishPurchaseButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //This doesn't lead anywhere just finishes
-                        JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
-                        GameArenaSystem.setCart();
-                        currentPrice.clear();
-                        cartFrame.dispose();
+                        // check if all text fields are not empty
+                        Checkout checkout = new Checkout();
+                        if (emailTextField.getText().isEmpty() || paymentTextField.getText().isEmpty() ||
+                                securityTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || monthTextField.getText().isEmpty() ||
+                                yearTextField.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please fill in all the fields.");
+                        } else if (!checkout.verifyEmail(emailTextField.getText())) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid email address.");
+                        } else if (!checkout.verifyPayment((paymentTextField.getText()))) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid 16-digit card number.");
+                        } else if (!checkout.verifyCVV(Integer.parseInt(securityTextField.getText()))) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid 3-digit security code.");
+                        } else if (!checkout.verifyMonth(Integer.parseInt(monthTextField.getText()))) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration month (MM).");
+                        } else if (!checkout.verifyYear(Integer.parseInt(yearTextField.getText()))) {
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration year (YYYY).");
+                        } else if (!checkout.verifyName(nameTextField.getText())){
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid name (First Last)");
+                        } else {
+                            // complete the purchase
+                            JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
+                            cartFrame.dispose();
+                            GameArenaSystem.cart.clearCart();
+                        }
                     }
                 });
 
 
-                cartPanel.add(totalLabel);
                 cartPanel.add(finishPurchaseButton);
-                cartFrame.add(cartPanel);
 
+                cartFrame.add(cartPanel);
                 cartFrame.setSize(400, 400);
                 cartFrame.setVisible(true);
             }
         });
+
+
+
 
         f.add(addToCartButton);
 
@@ -166,39 +264,28 @@ public class UI {
         UI.event = event;
         System.out.println("Event Page");
         hideAllComponents();
+        if (event.eventID == 1){
+            f.add(esportsStagePanel);
+        }
+        if (event.eventID == 0){
+            f.add(concertStagePanel);
+        }
         f.add(seatInformationPanel);
         f.add(addToCartButton);
-//        f.add(homepageButton);
+        f.add(homepageButton);
+
+        esportsStagePanel.setVisible(true);
+        concertStagePanel.setVisible(true);
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
         homepageButton.setVisible(true);
         UI.event.initiateSeats(event.numSections);
-
         for (Section section: event.getSectionsForEvent()) {
             section.setSeatsVisible(true);
             section.revalidate();
             section.repaint();
             f.add(section);
         }
-
-
-        String imagePath = System.getProperty("user.dir") + "/ConcertPicture.jpg";
-        ImageIcon imageIcon = new ImageIcon(imagePath);
-        Image image = imageIcon.getImage();
-        Image scaledImage = image.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
-
-        // Create a label to display the image
-        JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(scaledImage));
-        imageLabel.setHorizontalAlignment(JLabel.CENTER);
-        imageLabel.setVerticalAlignment(JLabel.CENTER);
-
-        // Add the label to the center of the event page
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BorderLayout());
-        centerPanel.add(imageLabel, BorderLayout.CENTER);
-        f.add(centerPanel, BorderLayout.CENTER);
-
         f.revalidate();
         f.repaint();
     }
@@ -213,9 +300,7 @@ public class UI {
         f.repaint();
     }
 
-
     public static void updateSeatInformationPanel(EventSeat seat){
-        currentPrice.add(seat.getPrice());
         seatInformationPanel.seatID = seat.getSeatID();
         seatInformationPanel.sectionID = seat.sectionID;
         seatInformationPanel.seatID_label.setText("Section Number: " + seatInformationPanel.sectionID + "   Seat Number: " + seatInformationPanel.seatID);
@@ -224,5 +309,4 @@ public class UI {
         seatInformationPanel.rowNum = seat.rowNum;
         seatInformationPanel.rowNum_label.setText("Row Number: " + seatInformationPanel.rowNum);
     }
-
 }

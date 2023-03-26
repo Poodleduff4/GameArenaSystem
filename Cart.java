@@ -68,4 +68,13 @@ public class Cart extends JPanel {
             }
         }
     }
+
+    public void clearCart(){
+        for (Ticket ticket : tickets) {
+            this.remove(ticket);
+        }
+        tickets.clear();
+        this.revalidate();
+        this.repaint();
+    }
 }
