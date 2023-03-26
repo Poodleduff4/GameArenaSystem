@@ -26,10 +26,21 @@ public class Event extends JLabel {
         this.sections = new Section[numSections];
         this.eventID = eventID;
         this.setPreferredSize(new Dimension(500, 200));
-        this.setBackground(Color.green);
-        this.setOpaque(true);
-        this.setText(eventName + '\n' + eventDate + '\n' + eventDesc);
+
+        //Setting all the tickets to a background image
+        ImageIcon icon = new ImageIcon("EventTickets.png");
+        Image image = icon.getImage();
+        Image resizedImage = image.getScaledInstance(500, 120, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+        this.setIcon(resizedIcon);
+        this.setHorizontalAlignment(JLabel.CENTER);
+        this.setVerticalAlignment(JLabel.CENTER);
+        this.setText("<html><center><font color='black'>" + eventName + "<br>" + eventDate + "<br>" + eventDesc + "</font></center></html>");
+        this.setVerticalTextPosition(JLabel.CENTER);
+        this.setHorizontalTextPosition(JLabel.CENTER);
         this.setVisible(true);
+
+        this.setOpaque(true);
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
