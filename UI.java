@@ -127,6 +127,17 @@ public class UI {
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
         Component[] comps = f.getContentPane().getComponents();
+        ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena.jpg");
+        JLabel topLabel = new JLabel(topIcon);
+        topLabel.setBounds(550, 15, topIcon.getIconWidth(), topIcon.getIconHeight());
+        f.getContentPane().add(topLabel);
+
+        // Create the black panel for the bottom
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.black);
+        bottomPanel.setBounds(0, (int)f.getSize().getHeight()-200, (int)f.getSize().getWidth(), 300);
+        f.getContentPane().add(bottomPanel);
+
         f.revalidate();
         f.repaint();
     }

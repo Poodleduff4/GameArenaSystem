@@ -30,31 +30,41 @@ public class Checkout {
         }
     }
 
-    public boolean verifyCVV(int CVV){ // 3 digit CVV number on the back of the card. No spaces in between.
-        int trueCVV = 0;
-        while (CVV != 0){
-            CVV = CVV / 10;
-            trueCVV+=1;
-        }
-        if (trueCVV != 3){
-            return false;
-        } else {
+    public boolean verifyCVV(int CVV) { // 3 digit CVV number on the back of the card. No spaces in between.
+        if (CVV > 99 && CVV < 1000) {
             return true;
+        } else {
+            return false;
         }
     }
 
-    public boolean verifyMonth(int month){  // MM EX: 1, 2, .., 11, 12
-        int trueMonth = 0;
-        while (month != 0){
-            month = month / 10;
-            trueMonth+=1;
-        }
-        if (trueMonth != 2){
-            return false;
-        } else if (month >= 13) {
-            return false;
-        } else {
+    public boolean verifyMonth(String month) {  // MM EX: 1, 2, .., 11, 12
+        if (month.equals("01")){
             return true;
+        } else if (month.equals("02")) {
+            return true;
+        } else if (month.equals("03")) {
+            return true;
+        } else if (month.equals("04")) {
+            return true;
+        } else if (month.equals("05")) {
+            return true;
+        } else if (month.equals("06")) {
+            return true;
+        } else if (month.equals("07")) {
+            return true;
+        } else if (month.equals("08")) {
+            return true;
+        } else if (month.equals("09")) {
+            return true;
+        } else if (month.equals("10")) {
+            return true;
+        } else if (month.equals("11")) {
+            return true;
+        } else if (month.equals("12")) {
+            return true;
+        } else {
+            return false;
         }
     }
 
