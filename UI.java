@@ -157,7 +157,7 @@ public class UI {
         hideAllComponents();
         f.add(seatInformationPanel);
         f.add(addToCartButton);
-        f.add(homepageButton);
+//        f.add(homepageButton);
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
         homepageButton.setVisible(true);
