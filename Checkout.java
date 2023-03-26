@@ -1,3 +1,4 @@
+import java.util.regex.Pattern;
 
 public class Checkout {
     public boolean printTicket(){
@@ -10,19 +11,23 @@ public class Checkout {
     }
 
     public boolean verifyEmail(String email){
-        return false;
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        Pattern bruh = Pattern.compile(emailRegex);
+        if (email == null){
+            return false;
+        }
+        return bruh.matcher(email).matches();
     }
 
-    public boolean verifyPayment(int cardNum){   // Standard 16 digit card number. No spaces in between.
-        int trueCard = 0;
-        while (cardNum != 0){
-            cardNum = cardNum / 10;
-            trueCard+=1;
-        }
-        if (trueCard != 16) {
+    public boolean verifyPayment(String cardNum){   // Standard 16 digit card number. No spaces in between.
+        if (cardNum.length() != 16) {
             return false;
-        } else {
+        }
+        try {
+            Integer.parseInt(cardNum);
             return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 

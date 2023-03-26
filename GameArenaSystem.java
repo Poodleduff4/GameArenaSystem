@@ -12,4 +12,8 @@ public class GameArenaSystem {
         eventList.setEventList(events);
         UI.homepage();
     }
+
+    public static void setCart(){
+        cart = new Cart();
+    }
 }

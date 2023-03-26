@@ -58,13 +58,6 @@ public class Cart extends JPanel {
             y += (label_height + padding);
         }
 
-        for (EventSeat seat : selectedSeats) {
-            if (!tickets.stream().anyMatch(t -> t.eventID == seat.eventID && t.sectionID == seat.sectionID && t.seatID == seat.getSeatID())) {
-                seat.setVisible(true);
-                seat.updateAvailability();
-            }
-        }
-
         for (Event event : GameArenaSystem.eventList.eventList) {
             for (Section section : event.sections) {
                 for (EventSeat seat : section.seats) {
@@ -74,5 +67,14 @@ public class Cart extends JPanel {
                 }
             }
         }
+    }
+
+    public void clearCart(){
+        for (Ticket ticket : tickets) {
+            this.remove(ticket);
+        }
+        tickets.clear();
+        this.revalidate();
+        this.repaint();
     }
 }
