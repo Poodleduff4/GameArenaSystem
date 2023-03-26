@@ -11,6 +11,7 @@ public class UI {
     static int labelSize = 25;
     int numSections;
     int seatsPerSection;
+    static ArrayList<Double> currentPrice = new ArrayList<Double>();
     int seatsPerRow;
     int gapBetween = (int) (.5 * labelSize);
     JPanel[] sections;
@@ -91,14 +92,21 @@ public class UI {
             public void actionPerformed(ActionEvent e) {
                 JFrame cartFrame = new JFrame("Cart");
 
-                JPanel cartPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 2));
+                JPanel cartPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 2, 2));
 
                 JLabel cartHeader = new JLabel("Cart Contents:");
+                int counter = 0;
+                JLabel totalLabel = new JLabel();
 
+                double totalAmount = 0;
                 for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
+                    totalAmount += currentPrice.get(counter);
+                    counter += 1;
+                    JLabel seatLabel = new JLabel("Seat ID: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum + "\n" + " Price: " + currentPrice.get(counter));
                     cartPanel.add(seatLabel);
                 }
+
+                totalLabel.setText("Total: $" + totalAmount);
 
                 JButton finishPurchaseButton = new JButton("Finish Purchase");
 
@@ -107,12 +115,15 @@ public class UI {
                     public void actionPerformed(ActionEvent e) {
                         //This doesn't lead anywhere just finishes
                         JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");
+                        GameArenaSystem.setCart();
+                        currentPrice.clear();
                         cartFrame.dispose();
                     }
                 });
 
-                cartPanel.add(finishPurchaseButton);
 
+                cartPanel.add(totalLabel);
+                cartPanel.add(finishPurchaseButton);
                 cartFrame.add(cartPanel);
 
                 cartFrame.setSize(400, 400);
@@ -162,12 +173,31 @@ public class UI {
         addToCartButton.setVisible(true);
         homepageButton.setVisible(true);
         UI.event.initiateSeats(event.numSections);
+
         for (Section section: event.getSectionsForEvent()) {
             section.setSeatsVisible(true);
             section.revalidate();
             section.repaint();
             f.add(section);
         }
+
+        String imagePath = System.getProperty("user.dir") + "/ConcertPicture.jpg";
+        ImageIcon imageIcon = new ImageIcon(imagePath);
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+
+        // Create a label to display the image
+        JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(new ImageIcon(scaledImage));
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imageLabel.setVerticalAlignment(JLabel.CENTER);
+
+        // Add the label to the center of the event page
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.add(imageLabel, BorderLayout.CENTER);
+        f.add(centerPanel, BorderLayout.CENTER);
+
         f.revalidate();
         f.repaint();
     }
@@ -182,7 +212,9 @@ public class UI {
         f.repaint();
     }
 
+
     public static void updateSeatInformationPanel(EventSeat seat){
+        currentPrice.add(seat.getPrice());
         seatInformationPanel.seatID = seat.getSeatID();
         seatInformationPanel.sectionID = seat.sectionID;
         seatInformationPanel.seatID_label.setText("Section Number: " + seatInformationPanel.sectionID + "   Seat Number: " + seatInformationPanel.seatID);
@@ -191,4 +223,5 @@ public class UI {
         seatInformationPanel.rowNum = seat.rowNum;
         seatInformationPanel.rowNum_label.setText("Row Number: " + seatInformationPanel.rowNum);
     }
+
 }
