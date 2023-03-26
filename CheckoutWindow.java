@@ -141,7 +141,7 @@ public class CheckoutWindow extends JFrame {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid 16-digit card number.");
                 } else if (!checkout.verifyCVV(Integer.parseInt(securityTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid 3-digit security code.");
-                } else if (!checkout.verifyMonth(Integer.parseInt(monthTextField.getText()))) {
+                } else if (!checkout.verifyMonth((monthTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid expiration month (MM).");
                 } else if (!checkout.verifyYear(Integer.parseInt(yearTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid expiration year (YYYY).");
@@ -150,17 +150,20 @@ public class CheckoutWindow extends JFrame {
                 } else {
                     // complete the purchase
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Thank you for your purchase!");
+                    try {
+                        TicketGenerator.generateTickets();
+                    }
+                    catch (Exception exc){
+                        System.out.println("Cannot Generate Tickets");
+                    }
+
+
                     CheckoutWindow.this.dispose();
                     GameArenaSystem.cart.clearCart();
                 }
 
                 // generate tickets
-                try {
-                    TicketGenerator.generateTickets();
-                }
-                catch (Exception exc){
-                    System.out.println("Cannot Generate Tickets");
-                }
+
             }
         });
 
