@@ -17,6 +17,8 @@ public class UI {
     static JButton addToCartButton;
     static JFrame f;
     static SeatInformationPanel seatInformationPanel;
+    static EsportsStagePanel esportsStagePanel;
+    static ConcertStagePanel concertStagePanel;
     static JButton homepageButton;
     static Dimension size;
     static JMenuBar menuBar;
@@ -32,6 +34,8 @@ public class UI {
 
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
+        esportsStagePanel = new EsportsStagePanel();
+        concertStagePanel = new ConcertStagePanel();
         seatInformationPanel = new SeatInformationPanel();
         homepageButton = new JButton("Homepage");
         homepageButton.setBounds((int)(size.getWidth()-100), (int)(size.getHeight()-200), 100, 100);
@@ -246,9 +250,18 @@ public class UI {
         UI.event = event;
         System.out.println("Event Page");
         hideAllComponents();
+        if (event.eventID == 1){
+            f.add(esportsStagePanel);
+        }
+        if (event.eventID == 0){
+            f.add(concertStagePanel);
+        }
         f.add(seatInformationPanel);
         f.add(addToCartButton);
         f.add(homepageButton);
+
+        esportsStagePanel.setVisible(true);
+        concertStagePanel.setVisible(true);
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
         homepageButton.setVisible(true);

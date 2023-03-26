@@ -49,7 +49,7 @@ public class Section extends JPanel {
 
 
         for (int j = 0; j < numSeats; j++) {
-            EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, price - (Math.random() * (int) (j / seatsPerRow)*3+1), this.eventId);
+            EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, price + Math.round(Math.random() * (int) (j / seatsPerRow)*3+1), this.eventId);
             seat.setBackground(Color.black);
             seat.setBounds((j % seatsPerRow) * labelSize + (j % seatsPerRow) * gapBetween, (labelSize + gapBetween) * ((int) (j / seatsPerRow)), labelSize, labelSize);
             seat.setOpaque(true);
