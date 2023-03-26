@@ -19,15 +19,18 @@ public class Checkout {
         return bruh.matcher(email).matches();
     }
 
-    public boolean verifyPayment(String cardNum){   // Standard 16 digit card number. No spaces in between.
-        if (cardNum.length() != 16) {
-            return false;
+    public boolean verifyPayment(String cardNum){
+        // Standard 16 digit card number. No spaces in between.
+        int trueCard = 0;
+        for(int i=0; i<cardNum.length(); i++){
+            if(Character.isDigit(cardNum.charAt(i))){
+                trueCard+=1;
+            }
         }
-        try {
-            Integer.parseInt(cardNum);
-            return true;
-        } catch (NumberFormatException e) {
+        if (trueCard != 16) {
             return false;
+        } else {
+            return true;
         }
     }
 
