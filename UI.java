@@ -181,6 +181,7 @@ public class UI {
             f.add(section);
         }
 
+
         String imagePath = System.getProperty("user.dir") + "/ConcertPicture.jpg";
         ImageIcon imageIcon = new ImageIcon(imagePath);
         Image image = imageIcon.getImage();
