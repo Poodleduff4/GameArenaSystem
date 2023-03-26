@@ -113,6 +113,18 @@ public class UI {
                 JPanel paymentPanel = new JPanel();
                 paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
 
+                JLabel nameLabel = new JLabel("Full Name:");
+                JTextField nameTextField = new JTextField();
+                nameTextField.setMaximumSize(new Dimension(200, 20));
+                JPanel namePanel = new JPanel();
+                namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+                namePanel.add(nameLabel);
+                namePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+                namePanel.add(nameTextField);
+                paymentPanel.add(namePanel);
+
+                paymentPanel.add(Box.createVerticalStrut(10));
+
                 JLabel emailLabel = new JLabel("Email:");
                 JTextField emailTextField = new JTextField();
                 emailTextField.setMaximumSize(new Dimension(200, 20));
@@ -181,7 +193,7 @@ public class UI {
                         // check if all text fields are not empty
                         Checkout checkout = new Checkout();
                         if (emailTextField.getText().isEmpty() || paymentTextField.getText().isEmpty() ||
-                                securityTextField.getText().isEmpty() || monthTextField.getText().isEmpty() ||
+                                securityTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || monthTextField.getText().isEmpty() ||
                                 yearTextField.getText().isEmpty()) {
                             JOptionPane.showMessageDialog(cartFrame, "Please fill in all the fields.");
                         } else if (!checkout.verifyEmail(emailTextField.getText())) {
@@ -194,6 +206,8 @@ public class UI {
                             JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration month (MM).");
                         } else if (!checkout.verifyYear(Integer.parseInt(yearTextField.getText()))) {
                             JOptionPane.showMessageDialog(cartFrame, "Please enter a valid expiration year (YYYY).");
+                        } else if (!checkout.verifyName(nameTextField.getText())){
+                            JOptionPane.showMessageDialog(cartFrame, "Please enter a valid name (First Last)");
                         } else {
                             // complete the purchase
                             JOptionPane.showMessageDialog(cartFrame, "Thank you for your purchase!");

@@ -11,7 +11,7 @@ public class Checkout {
     }
 
     public boolean verifyEmail(String email){
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        String emailRegex = "[A-Za-z0-9].*@[A-Za-z0-9].*\\.[A-z].*";
         Pattern bruh = Pattern.compile(emailRegex);
         if (email == null){
             return false;
@@ -71,6 +71,15 @@ public class Checkout {
         } else {
             return true;
         }
+    }
+
+    public boolean verifyName(String name){
+        String nameRegex = "[A-Z].*[a-z]\s[A-Z].*[a-z]";
+        Pattern bruhskii = Pattern.compile(nameRegex);
+        if (name == null){
+            return false;
+        }
+        return bruhskii.matcher(name).matches();
     }
 
    /*
