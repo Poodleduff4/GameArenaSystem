@@ -139,7 +139,7 @@ public class CheckoutWindow extends JFrame {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid email address.");
                 } else if (!checkout.verifyPayment((paymentTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid 16-digit card number.");
-                } else if (!checkout.verifyCVV(Integer.parseInt(securityTextField.getText()))) {
+                } else if (!checkout.verifyCVV((securityTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid 3-digit security code.");
                 } else if (!checkout.verifyMonth((monthTextField.getText()))) {
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Please enter a valid expiration month (MM).");
