@@ -25,9 +25,11 @@ public class UI {
     static Dimension size;
     static JMenuBar menuBar;
     static CheckoutWindow checkoutWindow;
+    static TitlePanel ticketSensei;
 
 
     UI(int numSections, int seatsPerSection, int seatsPerRow) {
+        ticketSensei = new TitlePanel();
         this.numSections = numSections;
         this.seatsPerSection = seatsPerSection;
         this.seatsPerRow = seatsPerRow;
@@ -133,6 +135,7 @@ public class UI {
         System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
+        f.add(ticketSensei);
         for (EventSeat seat :
                 selectedSeats) {
             seat.selected = false;
