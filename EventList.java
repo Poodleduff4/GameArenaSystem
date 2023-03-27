@@ -14,7 +14,6 @@ public class EventList extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBounds(0, 0, 500, 500);
         this.setOpaque(true);
-        this.setBackground(Color.red);
         this.setVisible(true);
 
     }

@@ -37,7 +37,6 @@ public class CheckoutWindow extends JFrame {
 
 
     CheckoutWindow() {
-//        cartFrame = new JFrame("Cart");
         cartPanel = new JPanel();
         cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
         ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));

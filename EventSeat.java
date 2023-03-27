@@ -1,8 +1,9 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class EventSeat extends Seat {
+public class EventSeat extends JLabel {
     boolean available;
     int eventID;
     int seatID;
