@@ -23,6 +23,7 @@ public class EventSeat extends JLabel {
         this.available = true;
 
         this.addMouseListener(new MouseListener() {
+            // When the user clicks a seat, set the color and selection status
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (!added) {
@@ -47,6 +48,7 @@ public class EventSeat extends JLabel {
 
             }
 
+            // when user hovers over the seat, change color to red
             @Override
             public void mouseEntered(MouseEvent e) {
                 if (!selected)
@@ -57,6 +59,7 @@ public class EventSeat extends JLabel {
 
             }
 
+            // when user mouse exits a seat, set color back to normal
             @Override
             public void mouseExited(MouseEvent e) {
                 if (!selected)
@@ -66,26 +69,28 @@ public class EventSeat extends JLabel {
         });
     }
 
+    // check if the seat is available to purchase
     public boolean checkAvailability() {
         return this.available;
     }
 
-    // seat bought, status = 0
+    // Set the seat availability to false
     public void updateAvailability() {
         this.available = false;
     }
 
+    // get the seatID
     public int getSeatID() {
         return this.seatID;
     }
 
+    // Get the sectionID of the seat
     public int getSectionID() {
         return this.sectionID;
     }
 
+    // get the price of the seat
     public double getPrice() {
         return this.price;
     }
-
-
 }

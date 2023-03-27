@@ -21,7 +21,6 @@ public class UI {
     static ConcertStagePanel concertStagePanel;
     static KendrickStagePanel kendrickStagePanel;
     static DrakeStagePanel drakeStagePanel;
-    static JButton homepageButton;
     static Dimension size;
     static JMenuBar menuBar;
     static CheckoutWindow checkoutWindow;
@@ -42,15 +41,7 @@ public class UI {
         esportsStagePanel = new EsportsStagePanel();
         concertStagePanel = new ConcertStagePanel();
         seatInformationPanel = new SeatInformationPanel();
-        homepageButton = new JButton("Homepage");
-        homepageButton.setBounds((int)(size.getWidth()-100), (int)(size.getHeight()-200), 100, 100);
-        homepageButton.setBackground(Color.pink);
-        homepageButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                homepage();
-            }
-        });
+
 
         addToCartButton = new JButton("Add To Cart");
         addToCartButton.setBounds(700, 700, 100, 100);
@@ -193,7 +184,6 @@ public class UI {
         }
         f.add(seatInformationPanel);
         f.add(addToCartButton);
-        f.add(homepageButton);
 
         drakeStagePanel.setVisible(true);
         kendrickStagePanel.setVisible(true);
@@ -201,7 +191,6 @@ public class UI {
         concertStagePanel.setVisible(true);
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
-        homepageButton.setVisible(true);
         for (Section section: event.getSectionsForEvent()) {
             section.setSeatsVisible(true);
             section.revalidate();

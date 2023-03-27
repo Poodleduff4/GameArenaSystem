@@ -20,8 +20,10 @@ public class EventList extends JPanel {
 
     public void setEventList(Event[] eventList) {
         this.eventList = eventList;
-//        System.arraycopy(eventList, 0, this.eventList, 0, number_of_events);
-            this.removeAll();
+        // clear eventList
+        this.removeAll();
+
+        // add the events to the page and format them
         for (Event event :
                 eventList) {
             this.add(event);
@@ -31,10 +33,12 @@ public class EventList extends JPanel {
         this.repaint();
     }
 
+
     public Event[] getEventList() {
         return eventList;
     }
-    
+
+    // return the event that matches the given eventID
     public Event getEventByID(int id){
         for (Event event :
                 eventList) {

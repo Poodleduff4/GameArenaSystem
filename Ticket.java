@@ -13,8 +13,6 @@ public class Ticket extends JLabel {
     double seatPrice;
     static JButton removeTicket;
 
-
-    // https://stackoverflow.com/questions/11532028/how-to-format-a-text-in-jlabel
     // Format text using HTML, make the ticket look nice
     Ticket(int seatID, int sectionID, int rowNum, int eventID, double seatPrice){
 

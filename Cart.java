@@ -7,6 +7,7 @@ public class Cart extends JPanel {
     int label_height = 100;
     int label_width = 400;
     int padding = 10;
+    // ArrayList to store tickets
     ArrayList<Ticket> tickets = new ArrayList<>();
     ArrayList<EventSeat> selectedSeats = new ArrayList<>();
 
@@ -24,9 +25,10 @@ public class Cart extends JPanel {
         return tickets;
     }
 
-
+    //
     public void addItemsToCart(ArrayList<EventSeat> seats){
         selectedSeats = seats;
+        // for each seat in the argument list, make a new ticket and add it to the cart
         for (EventSeat seat :
                 seats) {
             seat.setBackground(Color.black);
@@ -49,6 +51,7 @@ public class Cart extends JPanel {
         tickets.remove(ticket);
         formatCart();
 
+        // Set the availability of a seat to true if you remove the ticket from the cart
         for (Event event : GameArenaSystem.eventList.eventList) {
             for (Section section : event.sections) {
                 for (EventSeat seat : section.seats) {
@@ -63,6 +66,7 @@ public class Cart extends JPanel {
         this.repaint();
     }
 
+    // Method to rerender all the tickets in the cart and keep them formatted
     public void formatCart(){
         int maxTicketsPerColumn = Math.floorDiv(this.getSize().height, label_height + padding)-1;
         for (int i = 0; i < tickets.size(); i++) {
@@ -72,6 +76,7 @@ public class Cart extends JPanel {
         }
     }
 
+    // Remove all items from cart
     public void clearCart(){
         for (Ticket ticket : tickets) {
             this.remove(ticket);

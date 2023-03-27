@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CheckoutWindow extends JFrame {
-//    JFrame cartFrame;
-
-    // Initalizing all Jlabels, JPanels and JTextFields
     JPanel cartPanel;
     JPanel ticketPanel;
     JLabel cartHeader;
@@ -33,15 +30,12 @@ public class CheckoutWindow extends JFrame {
     JLabel subtotal;
     JLabel tax;
     JLabel total;
-    //Variables to calculate price of the cart
     double seatSubtotal = 0.0;
     double seatTax;
     double seatTotal;
 
 
     CheckoutWindow() {
-
-        //Creates JPanel that will hold all aspects of the checkout window
         cartPanel = new JPanel();
         cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
         ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));
@@ -50,21 +44,14 @@ public class CheckoutWindow extends JFrame {
         cartPanel.add(cartHeader);
 
 
-        //loop through tickets in the users cart to display the details/information of each seat being purchased
-        //The price of each ticket is added to the subtotal of the cart
+
         for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
             JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum + " Price: $" + seat.seatPrice + "0");
             ticketPanel.add(seatLabel);
             seatSubtotal += seat.seatPrice;
         }
-
-        //Multiplied tickets by 13% (0.13) for HST added onto the tickets
         seatTax = seatSubtotal * 0.13;
-
-        //Total amount = subtotal of the seats + taxes of the seats
         seatTotal = seatSubtotal + seatTax;
-
-        //Below ticket information display the prices calculated
         String subtotalText = String.format("Subtotal: $%.2f", seatSubtotal);
         String taxText = String.format("Tax: $%.2f", seatTax);
         String totalText = String.format("Total: $%.2f", seatTotal);
@@ -80,7 +67,7 @@ public class CheckoutWindow extends JFrame {
         paymentPanel = new JPanel();
         paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
 
-        //Uses intaized text fields previous to get the users information
+
 
         nameLabel = new JLabel("Full Name:");
         nameTextField = new JTextField();
@@ -154,18 +141,15 @@ public class CheckoutWindow extends JFrame {
 
         cartPanel.add(paymentPanel);
 
+
+
+
         finishPurchaseButton = new JButton("Finish Purchase");
 
         finishPurchaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // check if all text fields are not empty
-
-                //Once Finish Purchase button is pressed these if statements run to ensure user information is valid
-                //First if statement is called if any JTextFields are left Blank
-                //The else if statements checks if there are any specific JTextFields are incorrect using helper functions in Checkout class
-                //else statement is for if all user information is correct and if so there tickets will be genreated using the TicketGenerator class
-
                 Checkout checkout = new Checkout();
                 if (emailTextField.getText().isEmpty() || paymentTextField.getText().isEmpty() ||
                         securityTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || monthTextField.getText().isEmpty() ||

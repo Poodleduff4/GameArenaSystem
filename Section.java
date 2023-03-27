@@ -14,10 +14,12 @@ public class Section extends JPanel {
         seats = new EventSeat[numSeats];
         this.sectionID = sectionID;
         this.eventId = eventID;
+        // set size to hold all seat components
         int width = (seatsPerRow*labelSize) + (gapBetween * (seatsPerRow-1));
         int height = ((int) Math.ceil((double)numSeats / seatsPerRow) * (labelSize + gapBetween) - gapBetween);
         this.setBounds(0, sectionID* (height + labelSize), width, height);
 
+        // Set general price for seciton depending on event and distance from stage
         if (eventID == 1) {
             if (sectionID == 4) {
                 price = 200;
@@ -75,10 +77,11 @@ public class Section extends JPanel {
 
 
 
-
+        // create seats and add them to the seat array
         for (int j = 0; j < numSeats; j++) {
             EventSeat seat = new EventSeat(j, (int) (j / seatsPerRow), sectionID, price + Math.round(Math.random() * (int) (j / seatsPerRow)*3+1), this.eventId);
             seat.setBackground(Color.black);
+            // set position based on number of seats per row
             seat.setBounds((j % seatsPerRow) * labelSize + (j % seatsPerRow) * gapBetween, (labelSize + gapBetween) * ((int) (j / seatsPerRow)), labelSize, labelSize);
             seat.setOpaque(true);
             seat.setVisible(false);
@@ -90,10 +93,7 @@ public class Section extends JPanel {
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                if (UI.sectionSelected)
-//                    UI.selectedSection.setSeatsVisible(false);
-//                setSeatsVisible(true);
-//                UI.sectionSelected = true;
+                // set selected section
                 UI.selectedSection = Section.this;
             }
 
@@ -107,6 +107,7 @@ public class Section extends JPanel {
 
             }
 
+            // change color of section when hovering it
             @Override
             public void mouseEntered(MouseEvent e) {
                 setBackground(Color.gray);
@@ -119,6 +120,7 @@ public class Section extends JPanel {
         });
     }
 
+    // loop through all seats in the section and set them to visible(true) or visible(false)
     public void setSeatsVisible(boolean visible) {
         for (EventSeat seat : seats) {
             if(visible && seat.checkAvailability()){
