@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class Cart extends JPanel {
-    int label_height = 75;
+    int label_height = 100;
     int label_width = 500;
     int padding = 10;
     ArrayList<Ticket> tickets = new ArrayList<>();
