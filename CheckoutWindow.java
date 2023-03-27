@@ -28,9 +28,12 @@ public class CheckoutWindow extends JFrame {
     JTextField yearTextField;
     JPanel yearPanel;
     JButton finishPurchaseButton;
-
-
-
+    JLabel subtotal;
+    JLabel tax;
+    JLabel total;
+    double seatSubtotal = 0.0;
+    double seatTax;
+    double seatTotal;
 
 
     CheckoutWindow() {
@@ -40,12 +43,26 @@ public class CheckoutWindow extends JFrame {
         ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));
         cartHeader = new JLabel("Cart Contents:");
 
-        for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
-            JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum);
-            ticketPanel.add(seatLabel);
-        }
+        cartPanel.add(cartHeader);
 
-        cartPanel.add(ticketPanel);
+        for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
+            JLabel seatLabel = new JLabel("Section #: " + seat.sectionID + "\n" + " Seat #: " + seat.seatID + "\n" + " Row Number: " + seat.rowNum + " Price: $" + seat.seatPrice + "0");
+            ticketPanel.add(seatLabel);
+            seatSubtotal += seat.seatPrice;
+        }
+        seatTax = seatSubtotal * 0.13;
+        seatTotal = seatSubtotal + seatTax;
+        String subtotalText = String.format("Subtotal: $%.2f", seatSubtotal);
+        String taxText = String.format("Tax: $%.2f", seatTax);
+        String totalText = String.format("Total: $%.2f", seatTotal);
+        subtotal = new JLabel(subtotalText);
+        tax = new JLabel(taxText);
+        total = new JLabel(totalText);
+
+        cartPanel.add(ticketPanel, BorderLayout.SOUTH);
+        cartPanel.add(subtotal);
+        cartPanel.add(tax);
+        cartPanel.add(total);
 
         paymentPanel = new JPanel();
         paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
@@ -123,6 +140,9 @@ public class CheckoutWindow extends JFrame {
         paymentPanel.add(yearPanel);
 
         cartPanel.add(paymentPanel);
+
+
+
 
         finishPurchaseButton = new JButton("Finish Purchase");
 
