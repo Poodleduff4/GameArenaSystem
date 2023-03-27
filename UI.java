@@ -140,13 +140,6 @@ public class UI {
         }
         selectedSeats.clear();
 
-        //ORIGINAL STADIUM POSITION
-        //Component[] comps = f.getContentPane().getComponents();
-        //ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena.jpg");
-        //JLabel topLabel = new JLabel(topIcon);
-        //topLabel.setBounds(550, 15, topIcon.getIconWidth(), topIcon.getIconHeight());
-        //f.getContentPane().add(topLabel);
-
         //STADIUM MINI (BOTTOM-LEFT)
         Component[] comps = f.getContentPane().getComponents();
         ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena-Cropped2.jpg");
