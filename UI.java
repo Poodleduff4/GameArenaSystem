@@ -25,11 +25,9 @@ public class UI {
     static Dimension size;
     static JMenuBar menuBar;
     static CheckoutWindow checkoutWindow;
-    static TitlePanel ticketSensei;
 
 
     UI(int numSections, int seatsPerSection, int seatsPerRow) {
-        ticketSensei = new TitlePanel();
         this.numSections = numSections;
         this.seatsPerSection = seatsPerSection;
         this.seatsPerRow = seatsPerRow;
@@ -135,18 +133,44 @@ public class UI {
         System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
-        f.add(ticketSensei);
         for (EventSeat seat :
                 selectedSeats) {
             seat.selected = false;
             seat.setBackground(Color.black);
         }
         selectedSeats.clear();
+
+        //ORIGINAL STADIUM POSITION
+        //Component[] comps = f.getContentPane().getComponents();
+        //ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena.jpg");
+        //JLabel topLabel = new JLabel(topIcon);
+        //topLabel.setBounds(550, 15, topIcon.getIconWidth(), topIcon.getIconHeight());
+        //f.getContentPane().add(topLabel);
+
+        //STADIUM MINI (BOTTOM-LEFT)
         Component[] comps = f.getContentPane().getComponents();
-        ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena.jpg");
+        ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena-Cropped2.jpg");
         JLabel topLabel = new JLabel(topIcon);
-        topLabel.setBounds(550, 15, topIcon.getIconWidth(), topIcon.getIconHeight());
+        topLabel.setBounds(0, 450, 500, 300);
         f.getContentPane().add(topLabel);
+
+        //Ticket Sensei Logo
+        ImageIcon topSensei = new ImageIcon("TicketSensei.jpg");
+        JLabel topLabelSensei = new JLabel(topSensei);
+        topLabelSensei.setBounds(550, -200, 800, 800);
+        f.getContentPane().add(topLabelSensei);
+
+        //Concert Pic
+        ImageIcon topConcert = new ImageIcon("Concert2.jpeg");
+        JLabel topLabelConcert = new JLabel(topConcert);
+        topLabelConcert.setBounds(490, 480, 500, 250);
+        f.getContentPane().add(topLabelConcert);
+
+        //Esports Pic
+        ImageIcon topEsport = new ImageIcon("OWLan2.jpg");
+        JLabel topLabelEsport = new JLabel(topEsport);
+        topLabelEsport.setBounds(1000, 480, 500, 250);
+        f.getContentPane().add(topLabelEsport);
 
         // Create the black panel for the bottom
         JPanel bottomPanel = new JPanel();
