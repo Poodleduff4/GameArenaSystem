@@ -150,17 +150,20 @@ public class CheckoutWindow extends JFrame {
                 } else {
                     // complete the purchase
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Thank you for your purchase!");
+                    try {
+                        TicketGenerator.generateTickets();
+                    }
+                    catch (Exception exc){
+                        System.out.println("Cannot Generate Tickets");
+                    }
+
+
                     CheckoutWindow.this.dispose();
                     GameArenaSystem.cart.clearCart();
                 }
 
                 // generate tickets
-                try {
-                    TicketGenerator.generateTickets();
-                }
-                catch (Exception exc){
-                    System.out.println("Cannot Generate Tickets");
-                }
+
             }
         });
 
