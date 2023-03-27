@@ -58,20 +58,25 @@ public class UI {
             }
         });
 
+        //Gives our homepage a name at the top
         f = new JFrame("Game Arena System");
 
+        //Makes a menu bar for the homepage, checkout and view cart
         f.setJMenuBar(menuBar);
 
+        //Creates the homepage button
         JMenu homeMenu = new JMenu("Home");
         menuBar.add(homeMenu);
         JMenuItem homeItem = new JMenuItem("Homepage");
         homeMenu.add(homeItem);
+        //Adds an action listener when clicking on the homepage button and sends you back to the homepage
         homeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 homepage();
             }
         });
 
+        //Creates a cart menu option offering a view of your cart and your checkout window
         JMenu cartMenu = new JMenu("Cart");
         JMenuItem viewCartMenuItem = new JMenuItem("View Cart");
         JMenuItem checkoutMenuItem = new JMenuItem("Checkout");
@@ -80,6 +85,7 @@ public class UI {
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(cartMenu);
 
+        //Adds an action listener to the view cart option and calls the method necessary
         viewCartMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,6 +94,7 @@ public class UI {
 
         });
 
+        //If checkout is clicked this will lead to the checkout window method
         checkoutMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,7 +104,7 @@ public class UI {
 
 
 
-
+        //The add to cart button at the bottom
         f.add(addToCartButton);
 
 
@@ -105,10 +112,11 @@ public class UI {
         f.setLayout(null);
         f.setVisible(true);
 
-
+        //Closes the window
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //Removes all the components on the homepage, does not delete them but gets rid of their view
     public static void hideAllComponents(){
         Component[] comps = f.getContentPane().getComponents();
         for(int i = 0;i < comps.length;i++)

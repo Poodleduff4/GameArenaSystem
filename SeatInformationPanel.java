@@ -13,7 +13,7 @@ public class SeatInformationPanel extends JPanel {
     int height = 500;
     ImageIcon backgroundImage;
 
-    //This is the big shopping cart information when you click on the concert page
+    //This is the big shopping cart information when you click on the concert page shows the row number, seatID label, price label
     SeatInformationPanel(){
         this.setBounds(UI.size.width - width, 0, width, height);
         this.setVisible(false);

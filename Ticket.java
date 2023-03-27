@@ -15,7 +15,7 @@ public class Ticket extends JLabel {
 
     // Format text using HTML, make the ticket look nice
     Ticket(int seatID, int sectionID, int rowNum, int eventID, double seatPrice){
-
+        //Customer emails and name are put onto the ticket
         customerName="";
         customerEmail="";
         this.seatID = seatID;
@@ -28,6 +28,7 @@ public class Ticket extends JLabel {
         this.setBackground(Color.yellow);
         this.setLayout(new BorderLayout());
 
+        //Creates the center panel to put every item on it
         JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
 
@@ -41,13 +42,14 @@ public class Ticket extends JLabel {
             }
             });
 
-
+        //Add the remove ticket button to the screen of view cart
         centerPanel.add(removeTicket);
 
-
+        //formats the button to the bottom
         this.add(centerPanel, BorderLayout.SOUTH);
     }
-     public void setLabelText() {
+    //Adds the tickets to the screen and label
+    public void setLabelText() {
          this.setText("<html><pre>Event: " + GameArenaSystem.eventList.getEventByID(this.eventID).eventName + "<br>Section: " + sectionID + "<br>Row Number: " + rowNum + "<br>Seat Number: " + seatID + "<br>Price: $" + seatPrice + "0" + "</pre></html>");
      }
      public String generateUniqueIDString(){
