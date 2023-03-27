@@ -2,6 +2,7 @@ import java.util.regex.Pattern;
 
 public class Checkout {
 
+
     public boolean emailTicket(){
         return false;
     }
@@ -30,11 +31,17 @@ public class Checkout {
         }
     }
 
-    public boolean verifyCVV(int CVV) { // 3 digit CVV number on the back of the card. No spaces in between.
-        if (CVV > 99 && CVV < 1000) {
-            return true;
-        } else {
+    public boolean verifyCVV(String CVV) { // 3 digit CVV number on the back of the card. No spaces in between.
+        int trueCVV = 0;
+        for (int i=0; i<CVV.length(); i++){
+            if (Character.isDigit(CVV.charAt(i))){
+                trueCVV+=1;
+            }
+        }
+        if (trueCVV != 3){
             return false;
+        } else{
+            return true;
         }
     }
 
