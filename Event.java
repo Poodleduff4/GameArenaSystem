@@ -12,16 +12,18 @@ public class Event extends JLabel {
     String eventDesc;
     String eventDate;
     String eventType;
+    String eventLocation;
     Section[] sections;
     int numSeats;
     int numSections;
     int seatsPerRow;
 
-    Event(String eventName, String eventDesc, String eventDate, String eventType, int numSections, int numSeats, int seatsPerRow, int eventID){
+    Event(String eventName, String eventDesc, String eventDate, String eventType, String eventLocation, int numSections, int numSeats, int seatsPerRow, int eventID){
         this.eventName = eventName;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;
         this.eventType = eventType;
+        this.eventLocation = eventLocation;
         this.numSections = numSections;
         this.numSeats = numSeats;
         this.seatsPerRow = seatsPerRow;
@@ -85,7 +87,7 @@ public class Event extends JLabel {
     }
 
     public String getEventDetails(){
-        return eventDesc + '\n' + eventDate + '\n' + eventType;
+        return eventDesc + '\n' + eventDate + '\n' + eventType + '\n' + eventLocation;
     }
 
     public Section[] getSectionsForEvent(){

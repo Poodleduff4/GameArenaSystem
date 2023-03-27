@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class TicketGenerator {
     public static ProcessBuilder processBuilder = new ProcessBuilder();
     public static int generateTicket(Ticket ticket) throws Exception {
-        String[] command = {"python3", "./generateTicket.py", ticket.generateUniqueIDString(), GameArenaSystem.eventList.getEventByID(ticket.eventID).eventName, Integer.toString(ticket.sectionID), Integer.toString(ticket.rowNum), Integer.toString(ticket.seatID), GameArenaSystem.eventList.getEventByID(ticket.eventID).eventDate};
+        String[] command = {"python3", "./generateTicket.py", ticket.generateUniqueIDString(), GameArenaSystem.eventList.getEventByID(ticket.eventID).eventName, Integer.toString(ticket.sectionID), Integer.toString(ticket.rowNum), Integer.toString(ticket.seatID), GameArenaSystem.eventList.getEventByID(ticket.eventID).eventDate, GameArenaSystem.eventList.getEventByID(ticket.eventID).eventLocation};
         processBuilder.command(command);
         processBuilder.redirectErrorStream(true);
 
