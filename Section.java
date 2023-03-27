@@ -46,6 +46,34 @@ public class Section extends JPanel {
                 price = 50;
             }
         }
+        if (eventID == 2){
+            if (sectionID == 3){
+                price = 69420;
+            }
+            if (sectionID == 2){
+                price = 50000;
+            }
+            if (sectionID == 1){
+                price = 30000;
+            }
+            if (sectionID == 0){
+                price = 20000;
+            }
+        }
+        if (eventID == 3){
+            if (sectionID == 2){
+                price = 500000;
+            }
+            if (sectionID == 1){
+                price = 300000;
+            }
+            if (sectionID == 0){
+                price = 100000;
+            }
+        }
+
+
+
 
 
         for (int j = 0; j < numSeats; j++) {
