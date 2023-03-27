@@ -35,15 +35,15 @@ public class Section extends JPanel {
                 price = 70;
             }
         }
-        if (eventID == 0){
+        if (eventID == 0) {
             if (sectionID == 0) {
-                price = 50;
+                price = 200;
             }
             if (sectionID == 1) {
-                price = 75;
+                price = 300;
             }
             if (sectionID == 2) {
-                price = 50;
+                price = 500;
             }
         }
         if (eventID == 2){
