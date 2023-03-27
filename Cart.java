@@ -32,17 +32,12 @@ public class Cart extends JPanel {
             seat.setBackground(Color.black);
             seat.updateAvailability();
             seat.setVisible(false);
-<<<<<<< HEAD
-            Ticket ticket = new Ticket(seat.getSeatID(), seat.getSectionID(), seat.rowNum, seat.eventID);
 
-            tickets.add(ticket);
-            formatCart();
-=======
-            System.out.println(seat.eventID);
             Ticket ticket = new Ticket(seat.getSeatID(), seat.getSectionID(), seat.rowNum, seat.eventID, seat.getPrice());
             ticket.setBounds(0, tickets.size()*label_height + tickets.size()*padding, label_width, label_height);
->>>>>>> origin/Event-Selection
             this.add(ticket);
+            tickets.add(ticket);
+            formatCart();
             this.revalidate();
             this.repaint();
         }
