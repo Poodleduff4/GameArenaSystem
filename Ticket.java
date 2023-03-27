@@ -30,11 +30,10 @@ public class Ticket extends JLabel {
         this.setBackground(Color.yellow);
         this.setLayout(new BorderLayout());
 
-
         JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
 
-
+        //Button that removes the ticket specified
         removeTicket = new JButton("Remove Ticket");
         removeTicket.addActionListener(new ActionListener() {
             @Override
@@ -53,7 +52,7 @@ public class Ticket extends JLabel {
      public void setLabelText() {
          this.setText("<html><pre>Event: " + GameArenaSystem.eventList.getEventByID(this.eventID).eventName + "<br>Section: " + sectionID + "<br>Row Number: " + rowNum + "<br>Seat Number: " + seatID + "<br>Price: $" + seatPrice + "0" + "</pre></html>");
      }
-    public String generateUniqueIDString(){
+     public String generateUniqueIDString(){
         return eventID + "_" + sectionID + "_" + seatID;
     }
 }
