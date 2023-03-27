@@ -41,6 +41,10 @@ public class CheckoutWindow extends JFrame {
         cartPanel = new JPanel();
         cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
         ticketPanel = new JPanel(new GridLayout(GameArenaSystem.cart.tickets.size() + 1, 1));
+        cartHeader = new JLabel("Cart Contents:");
+
+        cartPanel.add(cartHeader);
+
 
 
         for (Ticket seat : GameArenaSystem.cart.getCartItems()) {
@@ -65,7 +69,7 @@ public class CheckoutWindow extends JFrame {
         paymentPanel = new JPanel();
         paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
 
-        ticketPanel.add(cartHeader);
+
 
         nameLabel = new JLabel("Full Name:");
         nameTextField = new JTextField();
