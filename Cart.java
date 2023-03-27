@@ -12,7 +12,7 @@ public class Cart extends JPanel {
 
     Cart(){
         this.setVisible(true);
-        this.setBounds(0, 0, label_width, (int)UI.size.getHeight());
+        this.setBounds(0, 0, label_width*(Math.floorDiv(UI.size.width, label_width)), (int)UI.size.getHeight()-50);
         this.setLayout(null);
     }
 
@@ -32,9 +32,12 @@ public class Cart extends JPanel {
             seat.setBackground(Color.black);
             seat.updateAvailability();
             seat.setVisible(false);
-            System.out.println(seat.eventID);
             Ticket ticket = new Ticket(seat.getSeatID(), seat.getSectionID(), seat.rowNum, seat.eventID);
-            ticket.setBounds(0, tickets.size()*label_height + tickets.size()*padding, label_width, label_height);
+
+            int maxTicketsPerColumn = Math.floorDiv(UI.size.height, label_height + padding)-1;
+            int y = (tickets.size() % maxTicketsPerColumn) * (label_height + padding);
+            int x = Math.floorDiv(tickets.size(), maxTicketsPerColumn);
+            ticket.setBounds(x  * (label_width + padding), y, label_width, label_height);
             this.add(ticket);
             this.revalidate();
             this.repaint();
@@ -48,6 +51,7 @@ public class Cart extends JPanel {
         this.revalidate();
         this.repaint();
 
+//        int x =
         int y = index * (label_height + padding);
         for (int i = 0; i < index; i++) {
             tickets.get(i).setBounds(0, i * (label_height + padding), label_width, label_height);
