@@ -3,3 +3,4 @@
 *.idea
 *.iml
 printed_tickets/*
+ticket_qrcode_*

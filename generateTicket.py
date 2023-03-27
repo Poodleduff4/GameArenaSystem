@@ -21,15 +21,16 @@ draw.text((130,222), sys.argv[2], fill="black")
 
 # Section number
 draw.font = ImageFont.truetype("FreeMono.ttf", 20)
-draw.text((140,215), sys.argv[3], fill="black")
+draw.text((140,315), sys.argv[3], fill="black")
 
 # Row number
-draw.font = ImageFont.truetype("FreeMono.ttf", 20)
-draw.text((107,265), sys.argv[4], fill="black")
+draw.text((110,365), sys.argv[4], fill="black")
 
 # Seat number
-draw.font = ImageFont.truetype("FreeMono.ttf", 20)
-draw.text((112,315), sys.argv[5], fill="black")
+draw.text((110,415), sys.argv[5], fill="black")
+
+# Date
+draw.text((100,468), sys.argv[6], fill="black")
 
 # ticket_id
 draw.font = ImageFont.truetype("FreeMono.ttf", 20)
