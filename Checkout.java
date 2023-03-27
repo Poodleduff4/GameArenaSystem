@@ -94,22 +94,4 @@ public class Checkout {
         }
         return bruhskii.matcher(name).matches();
     }
-
-   /*
-    old code if needed
-    public boolean verifyYear(int year){  // YYYY
-        int trueYear = 0;
-        while (year != 0){
-            year = year / 10;
-            trueYear+=1;
-        }
-        if (trueYear != 4){
-            return false;
-        } else if (year <= 2022) {
-            return false;
-        } else {
-            return true;
-        }
-    } */
-
 }

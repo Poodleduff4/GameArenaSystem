@@ -59,6 +59,10 @@ public class UI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GameArenaSystem.cart.addItemsToCart(selectedSeats);
+                for (EventSeat seat :
+                        selectedSeats) {
+                    seat.selected = false;
+                }
                 selectedSeats.clear();
 
             }
