@@ -29,7 +29,7 @@ public class Ticket extends JLabel {
         this.setOpaque(true);
         this.setBackground(Color.yellow);
         this.setLayout(new BorderLayout());
-        this.setText("<html><pre>Event: " + GameArenaSystem.eventList.getEventByID(this.eventID).eventName + "<br>Section: " + sectionID + "<br>Row Number: " + rowNum + "<br>Seat Number: " + seatID + "<br>Price: $" + seatPrice + "0" + "</pre></html>");
+
 
         JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
@@ -50,7 +50,9 @@ public class Ticket extends JLabel {
 
         this.add(centerPanel, BorderLayout.SOUTH);
     }
-
+     public void setLabelText() {
+         this.setText("<html><pre>Event: " + GameArenaSystem.eventList.getEventByID(this.eventID).eventName + "<br>Section: " + sectionID + "<br>Row Number: " + rowNum + "<br>Seat Number: " + seatID + "<br>Price: $" + seatPrice + "0" + "</pre></html>");
+     }
     public String generateUniqueIDString(){
         return eventID + "_" + sectionID + "_" + seatID;
     }
