@@ -58,3 +58,7 @@ ticket.paste(qrimg, (170, 50))
 # ticket.save(new_path + "ticket_" + sys.argv[1] + '.png')
 ticket.show()
 ticket.save(new_path + "ticket_" + sys.argv[1] + '.png')
+
+
+
+

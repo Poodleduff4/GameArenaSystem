@@ -130,6 +130,12 @@ public class UI {
         System.out.println("Homepage");
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
+        for (EventSeat seat :
+                selectedSeats) {
+            seat.selected = false;
+            seat.setBackground(Color.black);
+        }
+        selectedSeats.clear();
         Component[] comps = f.getContentPane().getComponents();
         ImageIcon topIcon = new ImageIcon("TD-Allianz-Arena.jpg");
         JLabel topLabel = new JLabel(topIcon);

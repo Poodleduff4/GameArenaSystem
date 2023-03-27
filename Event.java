@@ -75,13 +75,11 @@ public class Event extends JLabel {
     }
 
     public void initiateSeats(int numSections){
-        if (this.sections[0] == null){
-            for (int i = 0; i < numSections; i++) {
-                Section section = new Section(numSeats, seatsPerRow, UI.labelSize, (int)(.5*UI.labelSize), i, eventID);
-                section.setLayout(null);
-                section.setBackground(Color.white);
-                sections[i] = section;
-            }
+        for (int i = 0; i < numSections; i++) {
+            Section section = new Section(numSeats, seatsPerRow, UI.labelSize, (int)(.5*UI.labelSize), i, eventID);
+            section.setLayout(null);
+            section.setBackground(Color.white);
+            sections[i] = section;
         }
     }
     public String getEventByType(){
