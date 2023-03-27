@@ -16,10 +16,8 @@ public class Event extends JLabel {
     int numSeats;
     int numSections;
     int seatsPerRow;
-//    DateTimeFormatter dateTimeFormatter; = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     Event(String eventName, String eventDesc, String eventDate, String eventType, int numSections, int numSeats, int seatsPerRow, int eventID){
-//        dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         this.eventName = eventName;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;

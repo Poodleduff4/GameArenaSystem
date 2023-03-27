@@ -45,7 +45,6 @@ public class UI {
         homepageButton = new JButton("Homepage");
         homepageButton.setBounds((int)(size.getWidth()-100), (int)(size.getHeight()-200), 100, 100);
         homepageButton.setBackground(Color.pink);
-//        homepageButton.setVisible(false);
         homepageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
