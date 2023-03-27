@@ -60,6 +60,7 @@ public class Event extends JLabel {
 
             }
         });
+        initiateSeats(numSections);
     }
 
     public void initiateSeats(int numSections){

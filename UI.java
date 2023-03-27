@@ -150,7 +150,6 @@ public class UI {
         seatInformationPanel.setVisible(true);
         addToCartButton.setVisible(true);
         homepageButton.setVisible(true);
-        UI.event.initiateSeats(event.numSections);
         for (Section section: event.getSectionsForEvent()) {
             section.setSeatsVisible(true);
             section.revalidate();
