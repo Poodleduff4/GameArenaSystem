@@ -34,20 +34,23 @@ public class UI {
         selectedSeats = new ArrayList<>();
         menuBar  = new JMenuBar();
 
+        // variable for screen size
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
+        // panels to represent the stages for the events
         drakeStagePanel = new DrakeStagePanel();
         kendrickStagePanel = new KendrickStagePanel();
         esportsStagePanel = new EsportsStagePanel();
         concertStagePanel = new ConcertStagePanel();
         seatInformationPanel = new SeatInformationPanel();
 
-
+        // button for adding items to the cart
         addToCartButton = new JButton("Add To Cart");
-        addToCartButton.setBounds(700, 700, 100, 100);
+        addToCartButton.setBounds(700, 700, 200, 100);
         addToCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // add all the selected seats to the cart
                 GameArenaSystem.cart.addItemsToCart(selectedSeats);
                 for (EventSeat seat :
                         selectedSeats) {
@@ -118,9 +121,11 @@ public class UI {
 
     //Removes all the components on the homepage, does not delete them but gets rid of their view
     public static void hideAllComponents(){
+        // get all components on the screen
         Component[] comps = f.getContentPane().getComponents();
         for(int i = 0;i < comps.length;i++)
         {
+            // remove component from the screen
             f.remove(comps[i]);
         }
         f.revalidate();
@@ -130,6 +135,7 @@ public class UI {
     // Display homepage components
     public static void homepage(){
         System.out.println("Homepage");
+        // clear screen before adding homepage components
         hideAllComponents();
         f.add(GameArenaSystem.eventList);
         for (EventSeat seat :
@@ -178,6 +184,8 @@ public class UI {
         UI.event = event;
         System.out.println("Event Page");
         hideAllComponents();
+
+        // add the stages
         if (event.eventID == 3){
             f.add(drakeStagePanel);
         }
@@ -211,10 +219,7 @@ public class UI {
 
     public void viewCart(){
         hideAllComponents();
-
         f.add(GameArenaSystem.cart);
-
-
         f.revalidate();
         f.repaint();
     }
@@ -224,6 +229,7 @@ public class UI {
     }
 
     public static void updateSeatInformationPanel(EventSeat seat){
+        // update information for hovered seat
         seatInformationPanel.seatID = seat.getSeatID();
         seatInformationPanel.sectionID = seat.sectionID;
         seatInformationPanel.seatID_label.setText("Section Number: " + seatInformationPanel.sectionID + "   Seat Number: " + seatInformationPanel.seatID);
