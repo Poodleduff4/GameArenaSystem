@@ -33,7 +33,7 @@ public class Cart extends JPanel {
             seat.updateAvailability();
             seat.setVisible(false);
             System.out.println(seat.eventID);
-            Ticket ticket = new Ticket(seat.getSeatID(), seat.getSectionID(), seat.rowNum, seat.eventID);
+            Ticket ticket = new Ticket(seat.getSeatID(), seat.getSectionID(), seat.rowNum, seat.eventID, seat.getPrice());
             ticket.setBounds(0, tickets.size()*label_height + tickets.size()*padding, label_width, label_height);
             this.add(ticket);
             this.revalidate();
