@@ -17,3 +17,4 @@ public class ConcertStagePanel extends JPanel {
         this.setLayout(null);
     }
 }
+
