@@ -190,7 +190,7 @@ public class UI {
         seatInformationPanel.sectionID = seat.sectionID;
         seatInformationPanel.seatID_label.setText("Section Number: " + seatInformationPanel.sectionID + "   Seat Number: " + seatInformationPanel.seatID);
         seatInformationPanel.price = seat.getPrice();
-        seatInformationPanel.price_label.setText("Price: " + seatInformationPanel.price);
+        seatInformationPanel.price_label.setText("Price: " + seatInformationPanel.price + "0");
         seatInformationPanel.rowNum = seat.rowNum;
         seatInformationPanel.rowNum_label.setText("Row Number: " + seatInformationPanel.rowNum);
     }
