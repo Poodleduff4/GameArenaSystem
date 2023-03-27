@@ -32,6 +32,9 @@ draw.text((110,415), sys.argv[5], fill="black")
 # Date
 draw.text((100,468), sys.argv[6], fill="black")
 
+#Location
+draw.text((140, 517), sys.argv[7], fill="black")
+
 # ticket_id
 draw.font = ImageFont.truetype("FreeMono.ttf", 20)
 draw.text((105,675), str(abs(hash(sys.argv[1]))) + '_' + sys.argv[1], fill="black")
