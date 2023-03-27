@@ -41,11 +41,6 @@ public class Ticket extends JLabel {
             public void actionPerformed(ActionEvent e) {
                 Cart cart = (Cart) SwingUtilities.getAncestorOfClass(Cart.class, Ticket.this);
                 cart.removeTicket(Ticket.this);
-                //Add the stuff here
-
-//                for (double value : UI.currentPrice){
-//
-//                }
             }
             });
 

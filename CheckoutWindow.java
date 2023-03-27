@@ -141,6 +141,9 @@ public class CheckoutWindow extends JFrame {
 
         cartPanel.add(paymentPanel);
 
+
+
+
         finishPurchaseButton = new JButton("Finish Purchase");
 
         finishPurchaseButton.addActionListener(new ActionListener() {
