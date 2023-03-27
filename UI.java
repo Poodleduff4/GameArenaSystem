@@ -19,6 +19,8 @@ public class UI {
     static SeatInformationPanel seatInformationPanel;
     static EsportsStagePanel esportsStagePanel;
     static ConcertStagePanel concertStagePanel;
+    static KendrickStagePanel kendrickStagePanel;
+    static DrakeStagePanel drakeStagePanel;
     static JButton homepageButton;
     static Dimension size;
     static JMenuBar menuBar;
@@ -35,6 +37,8 @@ public class UI {
 
         size = Toolkit.getDefaultToolkit().getScreenSize();
 
+        drakeStagePanel = new DrakeStagePanel();
+        kendrickStagePanel = new KendrickStagePanel();
         esportsStagePanel = new EsportsStagePanel();
         concertStagePanel = new ConcertStagePanel();
         seatInformationPanel = new SeatInformationPanel();
@@ -146,6 +150,12 @@ public class UI {
         UI.event = event;
         System.out.println("Event Page");
         hideAllComponents();
+        if (event.eventID == 3){
+            f.add(drakeStagePanel);
+        }
+        if (event.eventID == 2){
+            f.add(kendrickStagePanel);
+        }
         if (event.eventID == 1){
             f.add(esportsStagePanel);
         }
@@ -156,6 +166,8 @@ public class UI {
         f.add(addToCartButton);
         f.add(homepageButton);
 
+        drakeStagePanel.setVisible(true);
+        kendrickStagePanel.setVisible(true);
         esportsStagePanel.setVisible(true);
         concertStagePanel.setVisible(true);
         seatInformationPanel.setVisible(true);
