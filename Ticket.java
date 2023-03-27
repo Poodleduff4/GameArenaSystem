@@ -39,8 +39,8 @@ public class Ticket extends JLabel {
         removeTicket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cart cart = (Cart) SwingUtilities.getAncestorOfClass(Cart.class, Ticket.this);
-                cart.removeTicket(Ticket.this);
+
+                GameArenaSystem.cart.removeTicket(Ticket.this);
             }
             });
 
