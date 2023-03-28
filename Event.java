@@ -40,7 +40,7 @@ public class Event extends JLabel {
         this.setHorizontalAlignment(JLabel.CENTER);
         this.setVerticalAlignment(JLabel.CENTER);
         // set text to formatted html with the vent imformation
-        this.setText("<html><center><font color='black'>" + eventName + "<br>" + eventDate + "<br>" + eventDesc + "</font></center></html>");
+        this.setText("<html><center><font color='black'>" + eventName + "<br>" + eventDate + "<br>" + eventLocation + "<br>" + eventDesc + "</font></center></html>");
         this.setVerticalTextPosition(JLabel.CENTER);
         this.setHorizontalTextPosition(JLabel.CENTER);
         this.setVisible(true);

@@ -105,12 +105,6 @@ public class UI {
             }
         });
 
-
-
-        //The add to cart button at the bottom
-        f.add(addToCartButton);
-
-
         f.setSize((int) size.getWidth(), (int) size.getHeight());
         f.setLayout(null);
         f.setVisible(true);
