@@ -189,9 +189,11 @@ public class CheckoutWindow extends JFrame {
 
 
         cartPanel.add(finishPurchaseButton);
+        cartPanel.setPreferredSize(cartPanel.getPreferredSize());
 
         this.add(cartPanel);
-        this.setSize(400, 400);
+//        this.setSize(400, 400);
+        this.pack();
         this.setVisible(true);
 
     }
