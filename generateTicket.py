@@ -8,10 +8,6 @@ cur_path = os.path.dirname(os.path.realpath('__file__'))
 new_path = os.path.join(cur_path, 'printed_tickets/')
 
 
-# file = open(new_path+"ticket_" + sys.argv[1], "w+")
-# file.write(sys.argv[1])
-# file.close()
-
 ticket = Image.open("Ticket_template.png")
 draw = ImageDraw.Draw(ticket)
 
