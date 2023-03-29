@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class EventList extends JPanel {
-    public int number_of_events = 2;
+    public int number_of_events = 4;
     public Event[] eventList;
 
     EventList(){
@@ -15,7 +15,6 @@ public class EventList extends JPanel {
         this.setBounds(0, 0, 500, 500);
         this.setOpaque(true);
         this.setVisible(true);
-
     }
 
     public void setEventList(Event[] eventList) {
