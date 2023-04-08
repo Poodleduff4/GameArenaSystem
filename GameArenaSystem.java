@@ -6,7 +6,7 @@ public class GameArenaSystem {
     static Cart cart;
     public static void main(String[] args) {
         //Creates a new UI to initialize and construct UI components using the UI class
-        UI ui = new UI(2, 50, 10);
+        UI ui = new UI();
         //Initializes a new cart for user to add their tickets using Cart class
         cart = new Cart();
         //List of all events that will be displayed on the homepage

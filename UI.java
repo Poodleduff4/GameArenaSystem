@@ -9,11 +9,6 @@ public class UI {
     static ArrayList<EventSeat> selectedSeats;
     static Event event;
     static int labelSize = 25;
-    int numSections;
-    int seatsPerSection;
-    int seatsPerRow;
-    int gapBetween = (int) (.5 * labelSize);
-    JPanel[] sections;
     static JButton addToCartButton;
     static JFrame f;
     static SeatInformationPanel seatInformationPanel;
@@ -26,11 +21,7 @@ public class UI {
     static CheckoutWindow checkoutWindow;
 
 
-    UI(int numSections, int seatsPerSection, int seatsPerRow) {
-        this.numSections = numSections;
-        this.seatsPerSection = seatsPerSection;
-        this.seatsPerRow = seatsPerRow;
-        sections = new JPanel[4];
+    UI() {
         selectedSeats = new ArrayList<>();
         menuBar  = new JMenuBar();
 

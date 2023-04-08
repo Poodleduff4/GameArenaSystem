@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class CheckoutWindow extends JFrame {
     JPanel cartPanel;
@@ -170,17 +171,26 @@ public class CheckoutWindow extends JFrame {
                 } else {
                     // complete the purchase
                     JOptionPane.showMessageDialog(CheckoutWindow.this, "Thank you for your purchase!");
+
+
                     try {
                         TicketGenerator.generateTickets();
                     }
-                    catch (Exception exc){
-                        System.out.println("Cannot Generate Tickets");
+                    catch(IOException ioException)
+                    {
+                        System.out.println("Invalid python3 installation\nExiting...");
                     }
+                    catch(InterruptedException interruptedException)
+                    {
+                        System.out.println("Process interrupted\nExiting...");
+                    }
+
 
 
                     CheckoutWindow.this.dispose();
                     GameArenaSystem.cart.clearCart();
                 }
+
 
                 // generate tickets
 
