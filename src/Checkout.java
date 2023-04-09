@@ -3,7 +3,6 @@ import java.util.regex.Pattern;
 public class Checkout {
 
 
-
     public boolean verifyEmail(String email){ //Verifys the email entered by the user using a regex expression to ensure that there is an @ symbol and a . symbol for the domain
         String emailRegex = "[A-Za-z0-9].*@[A-Za-z0-9].*\\.[A-z].*";
         Pattern bruh = Pattern.compile(emailRegex);
